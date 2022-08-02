@@ -19,9 +19,15 @@ public class Pessoa {
     private String nome;
     private String sobrenome;
     private LocalDate dataNascimento;
-    List<String> colecao = new ArrayList<>();
+    static List<String> colecao = new ArrayList<>();
 
     // Constructor
+    public Pessoa(String nome, String sobrenome, LocalDate dataNascimento) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.dataNascimento = dataNascimento;
+    }
+
     public Pessoa(String nome, String sobrenome) {
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -54,18 +60,18 @@ public class Pessoa {
 
     /** Methods **/
     // (1) Year calculator
-    public int calcIdade() {
+    public int calcularIdade() {
         return Period.between(this.dataNascimento, LocalDate.now()).getYears();
     }
 
     // (2) Add Name
     public String adicionarNome(Pessoa pessoa) {
         int tamanhoNome = pessoa.getNome().length();
-        int idade = pessoa.calcIdade();
+        int idade = pessoa.calcularIdade();
 
         if (tamanhoNome > 4 && idade > 17) {
             colecao.add(pessoa.getNome());
-            // System.out.println(colecao);
+            System.out.println(pessoa.getNome());
             return pessoa.getNome();
         }
 
@@ -78,6 +84,6 @@ public class Pessoa {
                 "\nnome: " + nome +
                 "\nsobrenome: " + sobrenome +
                 "\ndata de nascimento: " + dataNascimento +
-                "\nidade: " + calcIdade() + "\n";
+                "\nidade: " + calcularIdade() + "\n";
     }
 }
