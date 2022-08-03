@@ -1,6 +1,6 @@
 package Colmeia_Company_Responsabilities;
 
-public class Programa {
+public class Main {
     public static void main(String[] args) {
         CheckMail verificaMail = new CheckMail();
 

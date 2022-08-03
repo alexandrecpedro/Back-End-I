@@ -1,22 +1,23 @@
 package Colmeia_Company_Responsabilities;
 
+// Define how app works
 public class CheckMail {
-//    Attribute
+    /** Attribute **/
     Gerenciador inicial;
 
-//    Constructor
+    /** Constructor **/
     public CheckMail() {
         this.inicial = new GerenciadorGerencia();
-        Gerenciador tecnica = new GerenciadorTecnica();
+        Gerenciador tecnica = new GerenciadorTecnico();
         Gerenciador comercial = new GerenciadorComercial();
         Gerenciador spam = new GerenciadorSpam();
 
-        inicial.setSeguinte(comercial);
-        comercial.setSeguinte(tecnica);
-        tecnica.setSeguinte(spam);
+        inicial.setGerenciadorSeguinte(comercial);
+        comercial.setGerenciadorSeguinte(tecnica);
+        tecnica.setGerenciadorSeguinte(spam);
     }
 
-//    Method
+    /** Method **/
     public void verificar(Mail email){
         inicial.verificar(email);
     }

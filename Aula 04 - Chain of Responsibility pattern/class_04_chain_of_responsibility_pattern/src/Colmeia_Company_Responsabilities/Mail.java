@@ -1,17 +1,17 @@
 package Colmeia_Company_Responsabilities;
 
 public class Mail {
-//    Attributes
+    /** Attributes **/
     private String origem, destino, assunto;
 
-//    Constructor
+    /** Constructor **/
     public Mail(String origem, String destino, String assunto) {
         this.origem = origem;
         this.destino = destino;
         this.assunto = assunto;
     }
 
-//    Getters/Setters
+    /** Getters/Setters **/
     public String getOrigem() {
         return origem;
     }

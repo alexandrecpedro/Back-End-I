@@ -1,17 +1,18 @@
 package Colmeia_Company_Responsabilities;
 
 public abstract class Gerenciador {
-//    Attributes
+    /** Attributes **/
     protected Gerenciador gerenciadorSeguinte;
 
-//    Methods
-    public Gerenciador getSeguinte(){
+    /** Getters/Setters **/
+    public Gerenciador getGerenciadorSeguinte(){
         return this.gerenciadorSeguinte;
     }
 
-    public void setSeguinte(Gerenciador gerenciador){
+    public void setGerenciadorSeguinte(Gerenciador gerenciador){
         this.gerenciadorSeguinte = gerenciador;
     }
 
+    /** Methods **/
     public abstract void verificar(Mail mail);
 }
