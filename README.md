@@ -26,9 +26,9 @@
 - [x] Aula 10 | Logging (Trace e Debug) [encontro] - aula ao vivo | 10 de Agosto
 - [x] Aula 11 | Acesso a Banco de Dados
 - [x] Aula 11 | Acesso a Banco de Dados [encontro] - aula ao vivo | 10 de Novembro
-- [x] Aula 12 | Integração IV [encontro] - aula ao vivo | 17 de Agosto
+- [x] Aula 12 | Integração IV [encontro] - aula ao vivo | 11 de Agosto
 - [x] Aula 13 | Consultas e transações no banco de dados
-- [x] Aula 13 | Consultas e transações no banco de dados [encontro] - aula ao vivo | 18 de Agosto
+- [x] Aula 13 | Consultas e transações no banco de dados [encontro] - aula ao vivo | 15 de Agosto
 - [x] Aula 14 | Padrão DAO (Data Access Object)
 - [x] Aula 14 | Padrão DAO (Data Access Object) [encontro] - aula ao vivo | 22 de Agosto
 - [x] Aula 15 | Integração V [encontro] - aula ao vivo | 23 de Agosto
