@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SellerTest {
+class MainTest {
     Employee func1, func2;
     Affiliated afi1, afi2, afi3;
     Intern estag1, estag2;
@@ -49,32 +49,32 @@ class SellerTest {
 
     @Test
     public void calcularPontosTest() {
-        // Funcionario 1
+        // Employee 1
         assertEquals(30, func1.calcularPontos());
-        // Funcionario 2
+        // Employee 2
         assertTrue(func2.calcularPontos() > 9);
-        // Afiliado 1
+        // Affiliated 1
         assertFalse(afi1.calcularPontos() < 60);
-        // Afiliado 2
+        // Affiliated 2
         assertEquals(30, afi2.calcularPontos());
-        // Afiliado 3
+        // Affiliated 3
         assertTrue(afi3.calcularPontos() == 0);
     }
 
     public void mostrarCategoriaTest() {
-        // Funcionario 1
+        // Employee 1
         assertFalse(func1.mostrarCategoria() != "Aprendiz");
-        // Funcionario 2
+        // Employee 2
         assertEquals("Novato", func2.mostrarCategoria());
-        // Afiliado 1
+        // Affiliated 1
         assertTrue(afi1.mostrarCategoria() == "Mestre");
-        // Afiliado 2
+        // Affiliated 2
         assertEquals("Aprendiz", afi2.mostrarCategoria());
-        // Afiliado 3
+        // Affiliated 3
         assertFalse(afi3.mostrarCategoria() != "Novato");
-        // Estagiario 1
+        // Intern 1
         assertEquals("Estagiário(a) experiente", estag1.mostrarCategoria());
-        // Estagiario 2
+        // Intern 2
         assertTrue(estag2.mostrarCategoria() == "Estagiário(a) novato");
     }
 
