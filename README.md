@@ -107,4 +107,3 @@
 #### Avaliações
 - [x] Avaliação I  | Diagrama de Classes Chain of Responsibility pattern
 - [x] Avaliação II | Trabalho Integrador - Sistema de reserva de consultas (E-commerce)
-
