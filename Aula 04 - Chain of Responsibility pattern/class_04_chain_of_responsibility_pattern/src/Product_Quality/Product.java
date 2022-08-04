@@ -6,11 +6,11 @@ public class Product {
     private int lote, peso;
 
     /** Constructor **/
-    public Product(String nome, String embalagem, int lote, int peso) {
+    public Product(String nome, int peso, int lote, String embalagem) {
         this.nome = nome;
-        this.embalagem = embalagem;
-        this.lote = lote;
         this.peso = peso;
+        this.lote = lote;
+        this.embalagem = embalagem;
     }
 
     /** Getters/Setters **/

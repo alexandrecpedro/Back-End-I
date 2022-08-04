@@ -6,14 +6,12 @@ public class CheckQuality {
 
     /** Constructor **/
     public CheckQuality() {
-        this.inicial = new BatchCode();
-        Manager peso = new Weight();
-        Manager embalagem = new Packaging();
-        Manager spam = new ManagerSpam();
+        this.inicial = new ManagerBatchCode();
+        Manager peso = new ManagerWeight();
+        Manager embalagem = new ManagerPackaging();
 
-        inicial.setManagerSeguinte(comercial);
-        comercial.setManagerSeguinte(tecnica);
-        tecnica.setManagerSeguinte(spam);
+        inicial.setGerenciadorSeguinte(peso);
+        peso.setGerenciadorSeguinte(embalagem);
     }
 
     /** Method **/
