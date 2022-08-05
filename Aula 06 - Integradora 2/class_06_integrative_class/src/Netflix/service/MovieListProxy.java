@@ -15,8 +15,8 @@ public class MovieListProxy implements IMovieList {
     }
 
 //    Getters/Setters
-    public MovieList getMovieList() {
-        return movieList;
+    public void setMovieList(MovieList movieList) {
+        this.movieList = movieList;
     }
 
     public IP getIp() {
@@ -31,7 +31,7 @@ public class MovieListProxy implements IMovieList {
     @Override
     public Movie getMovie(String title) throws MovieNotAllowedException {
         Movie movie = movieList.getMovie(title);
-        if (! (getIp().getCountry().equalsIgnoreCase(movie.getCountry()))){
+        if (!(getIp().getCountry().equalsIgnoreCase(movie.getCountry()))) {
             throw new MovieNotAllowedException(title+" is not avaiable in "+getIp().getCountry());
         }
         return movie;

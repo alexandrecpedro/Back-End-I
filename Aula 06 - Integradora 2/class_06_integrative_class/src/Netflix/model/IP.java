@@ -24,11 +24,11 @@ public class IP {
     //    Method
     public String getCountry() {
         String country = "";
-        if (this.number[0] >= 0 && this.number[0] <= 49) {
+        if (this.number[0] < 50) {
             country = "Argentina";
-        } else if (this.number[0] >= 50 && this.number[0] <= 99) {
+        } else if (this.number[0] < 100) {
             country = "Brazil";
-        } else if (this.number[0] >= 100 && this.number[0] <= 149) {
+        } else if (this.number[0] < 150) {
             country = "Colombia";
         }
         return country;

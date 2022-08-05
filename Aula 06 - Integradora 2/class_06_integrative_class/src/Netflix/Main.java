@@ -11,12 +11,14 @@ public class Main {
         movieListProxy.setIp(new IP(99,23,15,18));
 
         try {
+            System.out.println("Acesso liberado");
             System.out.println(movieListProxy.getMovie("Atomic Apocalypse").getPlayLink());
         } catch (MovieNotAllowedException e) {
             System.out.println(e);
         }
 
         try {
+            System.out.println("Acesso liberado");
             System.out.println(movieListProxy.getMovie("Skateshop").getPlayLink());
         } catch (MovieNotAllowedException e) {
             System.out.println(e);
