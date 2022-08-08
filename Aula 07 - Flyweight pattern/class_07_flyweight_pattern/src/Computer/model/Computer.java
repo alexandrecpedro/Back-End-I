@@ -2,16 +2,14 @@ package Computer.model;
 
 public class Computer {
     /** Attributes **/
-    private int ram;
-    private int hd;
-    private static int contador;
+    private String id;
+    private int ram, hd, contador;
 
     /** Constructor **/
     public Computer(int ram, int hd) {
         this.ram = ram;
         this.hd = hd;
-        contador++;
-        System.out.println("Contagem: " + contador);
+        this.contador = 1;
     }
 
     /** Getters/Setters **/
@@ -31,11 +29,20 @@ public class Computer {
         this.hd = hd;
     }
 
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+
     /** Method **/
     @Override
     public String toString() {
         return "Computer" +
                 "\nram = " + ram + " GB" +
-                "\nhd = " + hd + " GB";
+                "\nhd = " + hd + " GB" +
+                "\ncontador = " + contador;
     }
 }

@@ -10,18 +10,19 @@ public class ComputerFactory {
     private static Map<String, Computer> macFlyweight = new HashMap<>();
 
     /** Method **/
-    public static Computer getComputer(int ram, int disco) {
-        String comp = "Comp: " + ram + " GB" + ": " + disco + " GB";
-        System.out.println(comp);
+    public static Computer getComputer(int ram, int hd) {
+        String id = "id: " + ram + " GB" + " : " + hd + " GB";
+        System.out.println(id);
 
-        if (!macFlyweight.containsKey(comp)) {
-            macFlyweight.put(comp, new Computer(ram, disco));
+        if (macFlyweight.containsKey(id)) {
+            Computer computer = macFlyweight.get(id);
+            computer.setContador(computer.getContador() + 1);
+            System.out.println("PC obtido da memória");
+            return computer;
+        } else {
+            macFlyweight.put(id, new Computer(ram, hd));
             System.out.println("PC criado");
-            return macFlyweight.get(comp);
+            return macFlyweight.get(id);
         }
-
-        System.out.println("PC obtido da memória");
-        return macFlyweight.get(comp);
     }
-
 }
