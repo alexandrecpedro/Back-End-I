@@ -6,26 +6,26 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Shapes {
-    private static final String SQL_CREATE_TABLE = "DROP TABLE IF EXISTS figura; " +
-            "CREATE TABLE figura (" +
-            "id int PRIMARY KEY, " +
-            "tipo varchar(50) not null, " +
-            "cor varchar(50) not null);";
+    private static final String SQL_CREATE_TABLE = "DROP TABLE IF EXISTS shape; " +
+            "CREATE TABLE shape (" +
+            "id int auto_increment PRIMARY KEY, " +
+            "type varchar(50) not null, " +
+            "color varchar(50) not null);";
 
-    private static final String INSERT_CIRC_VERM = "INSERT INTO figura (id, " +
-            "tipo, cor) VALUES (1, 'circulo', 'vermelho');";
+    private static final String INSERT_CIRCLE_RED = "INSERT INTO shape (" +
+            "type, color) VALUES ('circle', 'red');";
 
-    private static final String INSERT_CIRC_AZUL = "INSERT INTO figura (id, " +
-            "tipo, cor) VALUES (2, 'circulo', 'azul');";
+    private static final String INSERT_CIRCLE_BLUE = "INSERT INTO shape (" +
+            "type, color) VALUES ('circle', 'blue');";
 
-    private static final String INSERT_QUAD_VERM = "INSERT INTO figura (id, " +
-            "tipo, cor) VALUES (3, 'quadrado', 'vermelho');";
+    private static final String INSERT_SQUARE_RED = "INSERT INTO shape (" +
+            "type, color) VALUES ('square', 'red');";
 
-    private static final String INSERT_QUAD_ROXO = "INSERT INTO figura (id, " +
-            "tipo, cor) VALUES (4, 'quadrado', 'roxo');";
+    private static final String INSERT_SQUARE_PURPLE = "INSERT INTO shape (" +
+            "type, color) VALUES ('square', 'purple');";
 
-    private static final String INSERT_QUAD_AMAR = "INSERT INTO figura (id, " +
-            "tipo, cor) VALUES (5, 'quadrado', 'amarelo');";
+    private static final String INSERT_SQUARE_YELLOW = "INSERT INTO shape (" +
+            "type, color) VALUES ('square', 'yellow');";
 
     public static void main(String[] args) throws Exception {
 
@@ -36,24 +36,24 @@ public class Shapes {
             Statement createTable = conn.createStatement();
             createTable.execute(SQL_CREATE_TABLE);
 
-            Statement circVerm = conn.createStatement();
-            circVerm.execute(INSERT_CIRC_VERM);
+            Statement circleRed = conn.createStatement();
+            circleRed.execute(INSERT_CIRCLE_RED);
 
-            Statement circAzul = conn.createStatement();
-            circAzul.execute(INSERT_CIRC_AZUL);
+            Statement circleBlue = conn.createStatement();
+            circleBlue.execute(INSERT_CIRCLE_BLUE);
 
-            Statement quadVerm = conn.createStatement();
-            quadVerm.execute(INSERT_QUAD_VERM);
+            Statement squareRed = conn.createStatement();
+            squareRed.execute(INSERT_SQUARE_RED);
 
-            Statement quadRoxo = conn.createStatement();
-            quadRoxo.execute(INSERT_QUAD_ROXO);
+            Statement squarePurple = conn.createStatement();
+            squarePurple.execute(INSERT_SQUARE_PURPLE);
 
-            Statement quadAmar = conn.createStatement();
-            quadAmar.execute(INSERT_QUAD_AMAR);
+            Statement squareYellow = conn.createStatement();
+            squareYellow.execute(INSERT_SQUARE_YELLOW);
 
-            String SELECT_CIRC_VERM = "SELECT * FROM figura WHERE tipo = 'circulo' AND cor = 'vermelho';";
-            Statement selectCircVerm = conn.createStatement();
-            ResultSet rs = selectCircVerm.executeQuery(SELECT_CIRC_VERM);
+            String SELECT_CIRCLE_RED = "SELECT * FROM shape WHERE type = 'circle' AND color = 'red';";
+            Statement selectCircleRed = conn.createStatement();
+            ResultSet rs = selectCircleRed.executeQuery(SELECT_CIRCLE_RED);
 
             while (rs.next()) {
                 System.out.println(rs.getInt(1) + " | " +

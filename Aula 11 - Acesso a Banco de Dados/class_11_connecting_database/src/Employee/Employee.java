@@ -7,29 +7,29 @@ import java.sql.Statement;
 
 public class Employee {
 
-    private static final String SQL_CREATE_TABLE = "DROP TABLE IF EXISTS empregado; " +
-            "CREATE TABLE empregado (" +
-            "id int PRIMARY KEY, " +
-            "nome varchar(64) not null, " +
-            "empresa varchar(64), " +
-            "idade int not null, " +
-            "data_inicio varchar(32) not null);";
+    private static final String SQL_CREATE_TABLE = "DROP TABLE IF EXISTS employee; " +
+            "CREATE TABLE employee (" +
+            "id int auto_increment PRIMARY KEY, " +
+            "name varchar(64) not null, " +
+            "company varchar(64), " +
+            "age int not null, " +
+            "start_date varchar(32) not null);";
 
-    private static final String SQL_INSERT1 = "INSERT INTO empregado (id, " +
-            "nome, empresa, idade, data_inicio) VALUES " +
-            "(1, 'Murilo', 'Digital House', 28, '08/03/2022');";
+    private static final String SQL_INSERT1 = "INSERT INTO employee (" +
+            "name, company, age, start_date) VALUES " +
+            "('Murilo', 'Digital House', 28, '08/03/2022');";
 
-    private static final String SQL_INSERT2 = "INSERT INTO empregado (id, " +
-            "nome, empresa, idade, data_inicio) VALUES " +
-            "(2, 'Carolina', 'Digital House', 39, '28/01/2022');";
+    private static final String SQL_INSERT2 = "INSERT INTO employee (" +
+            "name, company, age, start_date) VALUES " +
+            "('Carolina', 'Digital House', 39, '28/01/2022');";
 
-    private static final String SQL_INSERT3 = "INSERT INTO empregado (id, " +
-            "nome, empresa, idade, data_inicio) VALUES " +
-            "(3, 'Diego', 'Digital House', 58, '11/08/2001');";
+    private static final String SQL_INSERT3 = "INSERT INTO employee (" +
+            "name, company, age, start_date) VALUES " +
+            "('Diego', 'Digital House', 58, '11/08/2001');";
 
     public static void main(String[] args) throws Exception {
 
-        // Execução do programa
+        // Application execution
         Connection connection = null;
 
         try {
@@ -46,9 +46,9 @@ public class Employee {
             Statement stateInsert3 = connection.createStatement();
             stateInsert3.execute(SQL_INSERT3);
 
-            String consultaSql = "SELECT * FROM empregado";
-            Statement selectEmpregado = connection.createStatement();
-            ResultSet rs = selectEmpregado.executeQuery(consultaSql);
+            String sqlConsult = "SELECT * FROM employee";
+            Statement selectEmployee = connection.createStatement();
+            ResultSet rs = selectEmployee.executeQuery(sqlConsult);
 
             while (rs.next()) {
                 System.out.println(rs.getInt(1) + " | " +
@@ -65,7 +65,7 @@ public class Employee {
 
     }
 
-    // Fora do método Main
+    // Out of Main method
     public static Connection getConnection() throws Exception {
         return DriverManager.getConnection("jdbc:h2:mem:class_11_connecting_database", "sa", "");
     }

@@ -9,35 +9,32 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Animals {
-
+    /** Attributes **/
     private static final Logger LOGGER = Logger.getLogger(Animals.class);
 
+    /** Queries - SQL Database **/
     private static final String SQLCREATETABLE = "DROP TABLE IF EXISTS animal; "
             + "CREATE TABLE animal ("
-            + "id INT PRIMARY KEY, "
-            + "nome VARCHAR(32) NOT NULL, "
-            + "tipo VARCHAR(32) NOT NULL)";
+            + "id INT AUTO_INCREMENT PRIMARY KEY, "
+            + "name VARCHAR(32) NOT NULL, "
+            + "type VARCHAR(32) NOT NULL)";
 
     private static final String SQLINSERT1 = "INSERT INTO animal "
-            + "(id, nome, tipo) "
-            + "VALUES (1, 'Poochy', 'dog')";
+            + "(name, type) VALUES ('Poochy', 'dog')";
 
     private static final String SQLINSERT2 = "INSERT INTO animal "
-            + "(id, nome, tipo) "
-            + "VALUES (2, 'Yoshi', 'dinosaur')";
+            + "(name, type) VALUES ('Yoshi', 'dinosaur')";
 
     private static final String SQLINSERT3 = "INSERT INTO animal "
-            + "(id, nome, tipo) "
-            + "VALUES (3, 'Epona', 'horse')";
+            + "(name, type) VALUES ('Epona', 'horse')";
 
     private static final String SQLINSERT4 = "INSERT INTO animal "
-            + "(id, nome, tipo) "
-            + "VALUES (4, 'Koopa', 'turtle')";
+            + "(name, type) VALUES ('Koopa', 'turtle')";
 
     private static final String SQLINSERT5 = "INSERT INTO animal "
-            + "(id, nome, tipo) "
-            + "VALUES (5, 'Paratroopa', 'turtle')";
+            + "(name, type) VALUES ('Paratroopa', 'turtle')";
 
+    /** Class Main **/
     public static void main(String[] args) throws Exception {
 
         BasicConfigurator.configure();
