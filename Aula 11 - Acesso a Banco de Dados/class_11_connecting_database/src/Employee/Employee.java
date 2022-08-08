@@ -17,11 +17,11 @@ public class Employee {
 
     private static final String SQL_INSERT1 = "INSERT INTO employee (" +
             "name, company, age, start_date) VALUES " +
-            "('Murilo', 'Digital House', 28, '08/03/2022');";
+            "('Murilo', 'Google', 28, '08/03/2022');";
 
     private static final String SQL_INSERT2 = "INSERT INTO employee (" +
             "name, company, age, start_date) VALUES " +
-            "('Carolina', 'Digital House', 39, '28/01/2022');";
+            "('Carolina', 'Facebook', 39, '28/01/2022');";
 
     private static final String SQL_INSERT3 = "INSERT INTO employee (" +
             "name, company, age, start_date) VALUES " +
