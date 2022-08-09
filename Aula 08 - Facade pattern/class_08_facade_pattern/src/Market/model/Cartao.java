@@ -1,15 +1,16 @@
 package Market.model;
 
 public class Cartao {
+    /** Attributes **/
+    private String numero, banco;
 
-    private String numero;
-    private String banco;
-
+    /** Constructor **/
     public Cartao(String numero, String banco) {
         this.numero = numero;
         this.banco = banco;
     }
 
+    /** Getters/Setters **/
     public String getNumero() {
         return numero;
     }

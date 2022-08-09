@@ -1,15 +1,16 @@
 package Market.model;
 
 public class Produto {
+    /** Attributes **/
+    private String nome, tipo;
 
-    private String nome;
-    private String tipo;
-
+    /** Constructor **/
     public Produto(String nome, String tipo) {
         this.nome = nome;
         this.tipo = tipo;
     }
 
+    /** Getters/Setters **/
     public String getNome() {
         return nome;
     }
