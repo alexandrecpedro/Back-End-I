@@ -6,7 +6,7 @@ public class ApiCartao {
 
     /** Method **/
     public int desconto(Cartao cartao) {
-        if (cartao.getBanco().compareTo("Star Bank") == 0) {
+        if (cartao.getBanco().equals("Star Bank")) {
             return 20;
         } else {
             return 0;
