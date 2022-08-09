@@ -7,40 +7,23 @@ import java.util.Map;
 
 public class ArvoreFactory {
     /** Attributes **/
-    private static final ArvoreFactory instance = new ArvoreFactory();
-
-    private static Map<String , Arvore> arvoreCache = new HashMap<>();
-
-    /** Constructor **/
-    public ArvoreFactory() {
-    }
-
-    /** Getter **/
-    public static ArvoreFactory getInstance() {
-        return instance;
-    }
+    private static Map<String , Arvore> arvoreMap = new HashMap<>();
 
     /** Method **/
-    public Arvore criarArvore(String cor) {
-        if (arvoreCache.containsKey(cor)) {
-            return arvoreCache.get(cor);
+    public static Arvore getArvore(double altura, double largura, String cor, String tipoArvore) {
+        String dadosArvore = "Dados: " + "Altura: " + altura + " | Lagura: " + largura
+                +  " | Cor: " + cor + " | Tipo da Árvore: " + tipoArvore;
+        System.out.println(dadosArvore);
+
+        if (arvoreMap.containsKey(dadosArvore)) {
+            Arvore arvore = arvoreMap.get(dadosArvore);
+            arvore.setContador(arvore.getContador() + 1);
+            System.out.println("Árvore obtida da memória");
+            return arvore;
+        } else {
+            arvoreMap.put(dadosArvore, new Arvore(altura, largura, cor, tipoArvore));
+            System.out.println("Árvore criada");
+            return arvoreMap.get(dadosArvore);
         }
-
-        Arvore arvore = null;
-
-        switch (cor) {
-            case "azul":
-                arvore = new Arvore(100, 300, "azul");
-                break;
-            case "vermelho":
-                arvore = new Arvore(500, 300, "vermelho");
-                break;
-            case "verde":
-                arvore = new Arvore(200, 400, "verde");
-                break;
-        }
-
-        arvoreCache.put(cor, arvore);
-        return arvore;
     }
 }

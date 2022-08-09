@@ -2,17 +2,17 @@ package Forest.model;
 
 public class Arvore {
     /** Attributes **/
-    private double altura;
-    private double largura;
-    private String cor;
-    private static int contagem;
+    private double altura, largura;
+    private String cor, tipoArvore;
+    private int contador;
 
     /** Constructor **/
-    public Arvore(double altura, double largura, String cor) {
+    public Arvore(double altura, double largura, String cor, String tipoArvore) {
         this.altura = altura;
         this.largura = largura;
         this.cor = cor;
-        contagem++;
+        this.tipoArvore = tipoArvore;
+        this.contador = 1;
     }
 
     /** Getters/Setters **/
@@ -40,10 +40,27 @@ public class Arvore {
         this.cor = cor;
     }
 
+    public String getTipoArvore() {
+        return tipoArvore;
+    }
+
+    public void setTipoArvore(String tipoArvore) {
+        this.tipoArvore = tipoArvore;
+    }
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+
     /** Method **/
     @Override
     public String toString() {
         return "Árvore" +
+                "\ntipo: " + tipoArvore +
                 "\naltura: " + altura +
                 "\nlargura: " + largura +
                 "\ncor: " + cor;
