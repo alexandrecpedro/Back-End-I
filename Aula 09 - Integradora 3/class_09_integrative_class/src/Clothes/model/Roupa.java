@@ -49,7 +49,7 @@ public class Roupa {
         return "Roupa" +
                 "\ntamanho: " + tamanho +
                 "\ntipo: " + tipo +
-                "\neNovo=" + eNovo +
-                "\nimportada=" + importada;
+                "\neNovo: " + eNovo +
+                "\nimportada: " + importada;
     }
 }

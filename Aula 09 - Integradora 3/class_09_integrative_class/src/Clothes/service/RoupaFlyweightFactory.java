@@ -31,10 +31,10 @@ public class RoupaFlyweightFactory {
     }
 
     public int getListaTamanhosSize() {
-        return  listaTamanhos.size();
+        return listaTamanhos.size();
     }
 
     public int getListaImportacaoSize() {
-        return  listaImportacao.size();
+        return listaImportacao.size();
     }
 }
