@@ -16,6 +16,7 @@ public class User {
             "nome VARCHAR(32) NOT NULL, " +
             "sobrenome VARCHAR(64) NOT NULL, " +
             "idade INT NOT NULL)";
+
     private static final String SQL_INSERT1 = "INSERT INTO usuario "
             + "(id, nome, sobrenome, idade) VALUES " +
             "(1, 'John', 'Lennom', 50 ); ";
@@ -103,7 +104,6 @@ public class User {
 //        }
 
     }
-
 
 }
 
