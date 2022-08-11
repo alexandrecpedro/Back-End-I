@@ -77,7 +77,7 @@ public class User {
         return DriverManager.getConnection("jdbc:h2:mem:class_12_integrative_class", "sa", "");
     }
 
-    public static void showUsers (Connection connection) throws Exception{
+    public static void showUsers (Connection connection) throws Exception {
         LOGGER.info("Visualizando os dados ...");
         String sqlSelect = "SELECT * FROM usuario";
         Statement statement = connection.createStatement();
