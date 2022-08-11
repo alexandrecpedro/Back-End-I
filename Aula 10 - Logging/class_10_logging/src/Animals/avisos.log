@@ -1,0 +1,9 @@
+[05-03-2022 17:56:05] [ INFO ] [TestLog:40] O Leão Simba está correndo
+[05-03-2022 17:56:05] [ INFO ] [TestLog:40] O Leão Mafusa está correndo
+[05-03-2022 17:56:05] [ ERROR] [TestLog:50] A idade não pode ser negativa
+[05-03-2022 17:56:05] [ ERROR] [TestLog:27] A idade do leão Mafusa está incorreta
+java.lang.IllegalStateException
+	at com.ctd.entities.Leao.eMaiorQue10(Leao.java:51)
+	at com.ctd.tests.MainTest.main(MainTest.java:25)
+[05-03-2022 17:56:05] [ INFO ] [TestLog:38] O Tigre está correndo
+[05-03-2022 17:56:05] [ INFO ] [TestLog:38] O Tigre está correndo
