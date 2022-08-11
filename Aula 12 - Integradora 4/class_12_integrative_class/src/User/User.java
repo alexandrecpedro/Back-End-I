@@ -61,13 +61,8 @@ public class User {
             statement.execute(SQL_DELETE);
 
             showUsers(connection);
-
-            //deletaUsuario(connection);
-
-
         } catch (Exception e) {
             LOGGER.error("Erro na execução do bloco Try: ", e);
-
         } finally {
             if (connection != null) {
                 connection.close();
