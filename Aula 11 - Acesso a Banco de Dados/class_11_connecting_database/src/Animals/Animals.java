@@ -78,7 +78,7 @@ public class Animals {
         }
     }
 
-    public static void deleteById(int id, Connection connection) throws Exception {
+    public static void deleteById(int id, Connection connection) throws SQLException {
         String sqlDelete = "DELETE FROM animal WHERE id = " + id;
         Statement statement = connection.createStatement();
         LOGGER.info("Deleting animal with id " + id + " ...");
