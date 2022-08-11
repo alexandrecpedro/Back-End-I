@@ -54,6 +54,9 @@ public class User {
             statement.execute(SQL_INSERT3);
             statement.execute(SQL_INSERT4);
 
+            showUsers(connection);
+            System.out.println();
+
             LOGGER.info("Deletando os dados");
             statement.execute(SQL_DELETE);
 

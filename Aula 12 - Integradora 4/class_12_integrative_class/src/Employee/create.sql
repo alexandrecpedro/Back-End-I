@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS employee;
+
+CREATE TABLE employee (
+id INT PRIMARY KEY,
+name VARCHAR(62),
+email VARCHAR(62)
+);
