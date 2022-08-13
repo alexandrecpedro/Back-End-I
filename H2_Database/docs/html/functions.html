@@ -88,7 +88,7 @@ translate -->
 <a href="grammar.html">SQL Grammar</a><br />
 <a href="systemtables.html">System Tables</a><br />
 <a href="../javadoc/index.html">Javadoc</a><br />
-<a href="https://github.com/h2database/h2database/releases/download/version-2.1.210/h2.pdf">PDF (2 MB)</a><br />
+<a href="https://github.com/h2database/h2database/releases/download/version-2.1.214/h2.pdf">PDF (2 MB)</a><br />
 <br />
 <b>Support</b><br />
 <a href="faq.html">FAQ</a><br />
@@ -206,8 +206,6 @@ translate -->
 
     <a href="#round" >ROUND</a><br />
 
-    <a href="#roundmagic" >ROUNDMAGIC</a><br />
-
     <a href="#secure_rand" >SECURE_RAND</a><br />
 
     <a href="#sign" >SIGN</a><br />
@@ -319,8 +317,6 @@ syntax-end -->
                 <a href="#random_uuid" >RANDOM_UUID</a><br />
             
                 <a href="#round" >ROUND</a><br />
-            
-                <a href="#roundmagic" >ROUNDMAGIC</a><br />
             
                 <a href="#secure_rand" >SECURE_RAND</a><br />
             
@@ -1691,24 +1687,6 @@ syntax-end -->
 <p>Example:</p>
 <p class="notranslate">ROUND(N, 2)</p>
 
-<h3 id="roundmagic" class="notranslate" onclick="switchBnf(this)">ROUNDMAGIC</h3>
-<!-- railroad-start -->
-<pre name="bnf" style="display: none">
-<span class="ruleH2">ROUNDMAGIC(<a href="grammar.html#numeric">numeric</a>)</span>
-</pre>
-<div name="railroad">
-<div class="ruleH2"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">ROUNDMAGIC ( <a href="grammar.html#numeric">numeric</a> )</code></td></tr></table></div>
-</div>
-<!-- railroad-end -->
-<!-- syntax-start
-<pre>
-<span class="ruleH2">ROUNDMAGIC(<a href="grammar.html#numeric">numeric</a>)</span>
-</pre>
-syntax-end -->
-<p>This function rounds numbers in a good way, but it is slow. It has a special handling for numbers around 0. Only numbers smaller or equal +/-1000000000000 are supported. The value is converted to a String internally, and then the last 4 characters are checked. &#39;000x&#39; becomes &#39;0000&#39; and &#39;999x&#39; becomes &#39;999999&#39;, which is rounded automatically. This method returns a double.</p>
-<p>Example:</p>
-<p class="notranslate">ROUNDMAGIC(N/3*3)</p>
-
 <h3 id="secure_rand" class="notranslate" onclick="switchBnf(this)">SECURE_RAND</h3>
 <!-- railroad-start -->
 <pre name="bnf" style="display: none">
@@ -2206,36 +2184,36 @@ syntax-end -->
 <h3 id="ltrim" class="notranslate" onclick="switchBnf(this)">LTRIM</h3>
 <!-- railroad-start -->
 <pre name="bnf" style="display: none">
-<span class="ruleCompat">LTRIM(<a href="grammar.html#string">string</a>)</span>
+<span class="ruleCompat">LTRIM(<a href="grammar.html#string">string</a> [, <a href="grammar.html#string">characterToTrimString</a>])</span>
 </pre>
 <div name="railroad">
-<div class="ruleCompat"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">LTRIM ( <a href="grammar.html#string">string</a> )</code></td></tr></table></div>
+<div class="ruleCompat"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">LTRIM ( <a href="grammar.html#string">string</a></code></td><td class="d"><table class="railroad"><tr class="railroad"><td class="ts"></td><td class="d">&nbsp;</td><td class="te"></td></tr><tr class="railroad"><td class="ls"></td><td class="d"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">, <a href="grammar.html#string">characterToTrimString</a></code></td></tr></table></td><td class="le"></td></tr></table></td><td class="d"><code class="c">)</code></td></tr></table></div>
 </div>
 <!-- railroad-end -->
 <!-- syntax-start
 <pre>
-<span class="ruleCompat">LTRIM(<a href="grammar.html#string">string</a>)</span>
+<span class="ruleCompat">LTRIM(<a href="grammar.html#string">string</a> [, <a href="grammar.html#string">characterToTrimString</a>])</span>
 </pre>
 syntax-end -->
-<p>Removes all leading spaces from a string.</p><p>This function is deprecated, use <a href="functions.html#trim"><code>TRIM</code></a> instead of it.</p>
+<p>Removes all leading spaces or other specified characters from a string.</p><p>This function is deprecated, use <a href="functions.html#trim"><code>TRIM</code></a> instead of it.</p>
 <p>Example:</p>
 <p class="notranslate">LTRIM(NAME)</p>
 
 <h3 id="rtrim" class="notranslate" onclick="switchBnf(this)">RTRIM</h3>
 <!-- railroad-start -->
 <pre name="bnf" style="display: none">
-<span class="ruleCompat">RTRIM(<a href="grammar.html#string">string</a>)</span>
+<span class="ruleCompat">RTRIM(<a href="grammar.html#string">string</a> [, <a href="grammar.html#string">characterToTrimString</a>])</span>
 </pre>
 <div name="railroad">
-<div class="ruleCompat"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">RTRIM ( <a href="grammar.html#string">string</a> )</code></td></tr></table></div>
+<div class="ruleCompat"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">RTRIM ( <a href="grammar.html#string">string</a></code></td><td class="d"><table class="railroad"><tr class="railroad"><td class="ts"></td><td class="d">&nbsp;</td><td class="te"></td></tr><tr class="railroad"><td class="ls"></td><td class="d"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">, <a href="grammar.html#string">characterToTrimString</a></code></td></tr></table></td><td class="le"></td></tr></table></td><td class="d"><code class="c">)</code></td></tr></table></div>
 </div>
 <!-- railroad-end -->
 <!-- syntax-start
 <pre>
-<span class="ruleCompat">RTRIM(<a href="grammar.html#string">string</a>)</span>
+<span class="ruleCompat">RTRIM(<a href="grammar.html#string">string</a> [, <a href="grammar.html#string">characterToTrimString</a>])</span>
 </pre>
 syntax-end -->
-<p>Removes all trailing spaces from a string.</p><p>This function is deprecated, use <a href="functions.html#trim"><code>TRIM</code></a> instead of it.</p>
+<p>Removes all trailing spaces or other specified characters from a string.</p><p>This function is deprecated, use <a href="functions.html#trim"><code>TRIM</code></a> instead of it.</p>
 <p>Example:</p>
 <p class="notranslate">RTRIM(NAME)</p>
 
@@ -2642,15 +2620,15 @@ syntax-end -->
 <h3 id="current_date" class="notranslate" onclick="switchBnf(this)">CURRENT_DATE</h3>
 <!-- railroad-start -->
 <pre name="bnf" style="display: none">
-CURRENT_DATE | <span class="ruleCompat">{ CURDATE() | SYSDATE | TODAY }</span>
+CURRENT_DATE
 </pre>
 <div name="railroad">
-<table class="railroad"><tr class="railroad"><td class="ts"></td><td class="d"><code class="c">CURRENT_DATE</code></td><td class="te"></td></tr><tr class="railroad"><td class="ls"></td><td class="d"><div class="ruleCompat"><table class="railroad"><tr class="railroad"><td class="ts"></td><td class="d"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">CURDATE ( )</code></td></tr></table></td><td class="te"></td></tr><tr class="railroad"><td class="ks"></td><td class="d"><code class="c">SYSDATE</code></td><td class="ke"></td></tr><tr class="railroad"><td class="ls"></td><td class="d"><code class="c">TODAY</code></td><td class="le"></td></tr></table></div></td><td class="le"></td></tr></table>
+<code class="c">CURRENT_DATE</code>
 </div>
 <!-- railroad-end -->
 <!-- syntax-start
 <pre>
-CURRENT_DATE | <span class="ruleCompat">{ CURDATE() | SYSDATE | TODAY }</span>
+CURRENT_DATE
 </pre>
 syntax-end -->
 <p>Returns the current date.</p><p>These functions return the same value within a transaction (default) or within a command depending on database mode.</p><p><a href="commands.html#set_time_zone"><code>SET TIME ZONE</code></a> command reevaluates the value for these functions using the same original <code>UTC</code> timestamp of transaction.</p>
@@ -2696,15 +2674,15 @@ syntax-end -->
 <h3 id="localtime" class="notranslate" onclick="switchBnf(this)">LOCALTIME</h3>
 <!-- railroad-start -->
 <pre name="bnf" style="display: none">
-LOCALTIME [ (<a href="grammar.html#int">int</a>) ] | <span class="ruleCompat">CURTIME([ <a href="grammar.html#int">int</a> ])</span>
+LOCALTIME [ (<a href="grammar.html#int">int</a>) ]
 </pre>
 <div name="railroad">
-<table class="railroad"><tr class="railroad"><td class="ts"></td><td class="d"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">LOCALTIME</code></td><td class="d"><table class="railroad"><tr class="railroad"><td class="ts"></td><td class="d">&nbsp;</td><td class="te"></td></tr><tr class="railroad"><td class="ls"></td><td class="d"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">( <a href="grammar.html#int">int</a> )</code></td></tr></table></td><td class="le"></td></tr></table></td></tr></table></td><td class="te"></td></tr><tr class="railroad"><td class="ls"></td><td class="d"><div class="ruleCompat"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">CURTIME (</code></td><td class="d"><table class="railroad"><tr class="railroad"><td class="ts"></td><td class="d">&nbsp;</td><td class="te"></td></tr><tr class="railroad"><td class="ls"></td><td class="d"><code class="c"><a href="grammar.html#int">int</a></code></td><td class="le"></td></tr></table></td><td class="d"><code class="c">)</code></td></tr></table></div></td><td class="le"></td></tr></table>
+<table class="railroad"><tr class="railroad"><td class="d"><code class="c">LOCALTIME</code></td><td class="d"><table class="railroad"><tr class="railroad"><td class="ts"></td><td class="d">&nbsp;</td><td class="te"></td></tr><tr class="railroad"><td class="ls"></td><td class="d"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">( <a href="grammar.html#int">int</a> )</code></td></tr></table></td><td class="le"></td></tr></table></td></tr></table>
 </div>
 <!-- railroad-end -->
 <!-- syntax-start
 <pre>
-LOCALTIME [ (<a href="grammar.html#int">int</a>) ] | <span class="ruleCompat">CURTIME([ <a href="grammar.html#int">int</a> ])</span>
+LOCALTIME [ (<a href="grammar.html#int">int</a>) ]
 </pre>
 syntax-end -->
 <p>Returns the current time without time zone. If fractional seconds precision is specified it should be from 0 to 9, 0 is default. The specified value can be used only to limit precision of a result. The actual maximum available precision depends on operating system and <code>JVM</code> and can be 3 (milliseconds) or higher. Higher precision is not available before Java 9.</p><p>These functions return the same value within a transaction (default) or within a command depending on database mode.</p><p><a href="commands.html#set_time_zone"><code>SET TIME ZONE</code></a> command reevaluates the value for these functions using the same original <code>UTC</code> timestamp of transaction.</p>
@@ -2714,15 +2692,15 @@ syntax-end -->
 <h3 id="localtimestamp" class="notranslate" onclick="switchBnf(this)">LOCALTIMESTAMP</h3>
 <!-- railroad-start -->
 <pre name="bnf" style="display: none">
-LOCALTIMESTAMP [ (<a href="grammar.html#int">int</a>) ] | <span class="ruleCompat">NOW( [ <a href="grammar.html#int">int</a> ] )</span>
+LOCALTIMESTAMP [ (<a href="grammar.html#int">int</a>) ]
 </pre>
 <div name="railroad">
-<table class="railroad"><tr class="railroad"><td class="ts"></td><td class="d"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">LOCALTIMESTAMP</code></td><td class="d"><table class="railroad"><tr class="railroad"><td class="ts"></td><td class="d">&nbsp;</td><td class="te"></td></tr><tr class="railroad"><td class="ls"></td><td class="d"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">( <a href="grammar.html#int">int</a> )</code></td></tr></table></td><td class="le"></td></tr></table></td></tr></table></td><td class="te"></td></tr><tr class="railroad"><td class="ls"></td><td class="d"><div class="ruleCompat"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">NOW (</code></td><td class="d"><table class="railroad"><tr class="railroad"><td class="ts"></td><td class="d">&nbsp;</td><td class="te"></td></tr><tr class="railroad"><td class="ls"></td><td class="d"><code class="c"><a href="grammar.html#int">int</a></code></td><td class="le"></td></tr></table></td><td class="d"><code class="c">)</code></td></tr></table></div></td><td class="le"></td></tr></table>
+<table class="railroad"><tr class="railroad"><td class="d"><code class="c">LOCALTIMESTAMP</code></td><td class="d"><table class="railroad"><tr class="railroad"><td class="ts"></td><td class="d">&nbsp;</td><td class="te"></td></tr><tr class="railroad"><td class="ls"></td><td class="d"><table class="railroad"><tr class="railroad"><td class="d"><code class="c">( <a href="grammar.html#int">int</a> )</code></td></tr></table></td><td class="le"></td></tr></table></td></tr></table>
 </div>
 <!-- railroad-end -->
 <!-- syntax-start
 <pre>
-LOCALTIMESTAMP [ (<a href="grammar.html#int">int</a>) ] | <span class="ruleCompat">NOW( [ <a href="grammar.html#int">int</a> ] )</span>
+LOCALTIMESTAMP [ (<a href="grammar.html#int">int</a>) ]
 </pre>
 syntax-end -->
 <p>Returns the current timestamp without time zone. If fractional seconds precision is specified it should be from 0 to 9, 6 is default. The specified value can be used only to limit precision of a result. The actual maximum available precision depends on operating system and <code>JVM</code> and can be 3 (milliseconds) or higher. Higher precision is not available before Java 9.</p><p>The returned value has date and time without time zone information. If time zone has <code>DST</code> transitions the returned values are ambiguous during transition from <code>DST</code> to normal time. For absolute timestamps use the <a href="functions.html#current_timestamp"><code>CURRENT_TIMESTAMP</code></a> function and <a href="datatypes.html#timestamp_with_time_zone_type"><code>TIMESTAMP WITH TIME ZONE</code></a> data type.</p><p>These functions return the same value within a transaction (default) or within a command depending on database mode.</p><p><a href="commands.html#set_time_zone"><code>SET TIME ZONE</code></a> reevaluates the value for these functions using the same original <code>UTC</code> timestamp of transaction.</p>

@@ -6,10 +6,8 @@
 package org.h2.value;
 
 import org.h2.api.ErrorCode;
-import org.h2.engine.Constants;
 import org.h2.engine.SysProperties;
 import org.h2.message.DbException;
-import org.h2.util.StringUtils;
 import org.h2.util.Utils;
 
 /**
@@ -19,13 +17,8 @@ public final class ValueJavaObject extends ValueBytesBase {
 
     private static final ValueJavaObject EMPTY = new ValueJavaObject(Utils.EMPTY_BYTES);
 
-    protected ValueJavaObject(byte[] v) {
+    private ValueJavaObject(byte[] v) {
         super(v);
-        int length = value.length;
-        if (length > Constants.MAX_STRING_LENGTH) {
-            throw DbException.getValueTooLongException(getTypeName(getValueType()),
-                    StringUtils.convertBytesToHex(value, 41), length);
-        }
     }
 
     /**

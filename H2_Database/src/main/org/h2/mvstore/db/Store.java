@@ -31,8 +31,12 @@ import org.h2.mvstore.type.MetaType;
 import org.h2.store.InDoubtTransaction;
 import org.h2.store.fs.FileChannelInputStream;
 import org.h2.store.fs.FileUtils;
+import org.h2.util.HasSQL;
 import org.h2.util.StringUtils;
 import org.h2.util.Utils;
+import org.h2.value.TypeInfo;
+import org.h2.value.Typed;
+import org.h2.value.Value;
 
 /**
  * A store with open tables.
@@ -48,7 +52,7 @@ public final class Store {
     static char[] decodePassword(byte[] key) {
         char[] password = new char[key.length / 2];
         for (int i = 0; i < password.length; i++) {
-            password[i] = (char) (((key[i + i] & 255) << 16) | ((key[i + i + 1]) & 255));
+            password[i] = (char) (((key[i + i] & 255) << 16) | (key[i + i + 1] & 255));
         }
         return password;
     }
@@ -81,14 +85,15 @@ public final class Store {
      * Creates the store.
      *
      * @param db the database
+     * @param key for file encryption
      */
-    public Store(Database db) {
-        byte[] key = db.getFileEncryptionKey();
+    public Store(Database db, byte[] key) {
         String dbPath = db.getDatabasePath();
         MVStore.Builder builder = new MVStore.Builder();
         boolean encrypted = false;
         if (dbPath != null) {
             String fileName = dbPath + Constants.SUFFIX_MV_FILE;
+            this.fileName = fileName;
             MVStoreTool.compactCleanUp(fileName);
             builder.fileName(fileName);
             builder.pageSplitSize(db.getPageSize());
@@ -123,12 +128,12 @@ public final class Store {
             // otherwise background thread would compete for store lock
             // with maps opening procedure
             builder.autoCommitDisabled();
+        } else {
+            fileName = null;
         }
         this.encrypted = encrypted;
         try {
             this.mvStore = builder.open();
-            FileStore fs = mvStore.getFileStore();
-            fileName = fs != null ? fs.getFileName() : null;
             if (!db.getSettings().reuseSpace) {
                 mvStore.setReuseSpace(false);
             }
@@ -152,6 +157,8 @@ public final class Store {
         switch (e.getErrorCode()) {
         case DataUtils.ERROR_CLOSED:
             throw DbException.get(ErrorCode.DATABASE_IS_CLOSED, e, fileName);
+        case DataUtils.ERROR_UNSUPPORTED_FORMAT:
+            throw DbException.get(ErrorCode.FILE_VERSION_ERROR_1, e, fileName);
         case DataUtils.ERROR_FILE_CORRUPT:
             if (encrypted) {
                 throw DbException.get(ErrorCode.FILE_ENCRYPTION_ERROR_1, e, fileName);
@@ -165,6 +172,22 @@ public final class Store {
         default:
             throw DbException.get(ErrorCode.GENERAL_ERROR_1, e, e.getMessage());
         }
+    }
+
+    /**
+     * Gets a SQL exception meaning the type of expression is invalid or unknown.
+     *
+     * @param param the name of the parameter
+     * @param e the expression
+     * @return the exception
+     */
+    public static DbException getInvalidExpressionTypeException(String param, Typed e) {
+        TypeInfo type = e.getType();
+        if (type.getValueType() == Value.UNKNOWN) {
+            return DbException.get(ErrorCode.UNKNOWN_DATA_TYPE_1,
+                                    (e instanceof HasSQL ? (HasSQL) e : type).getTraceSQL());
+        }
+        return DbException.get(ErrorCode.INVALID_VALUE_2, type.getTraceSQL(), param);
     }
 
     public MVStore getMvStore() {
@@ -351,13 +374,21 @@ public final class Store {
                     allowedCompactionTime = 0;
                 }
 
+                String fileName = null;
+                FileStore targetFileStore = null;
+                if (compactFully) {
+                    fileName = fileStore.getFileName();
+                    String tempName = fileName + Constants.SUFFIX_MV_STORE_TEMP_FILE;
+                    FileUtils.delete(tempName);
+                    targetFileStore = fileStore.open(tempName, false);
+                }
+
                 mvStore.close(allowedCompactionTime);
 
-                String fileName = fileStore.getFileName();
                 if (compactFully && FileUtils.exists(fileName)) {
                     // the file could have been deleted concurrently,
                     // so only compact if the file still exists
-                    MVStoreTool.compact(fileName, true);
+                    compact(fileName, targetFileStore);
                 }
             }
         } catch (MVStoreException e) {
@@ -370,6 +401,20 @@ public final class Store {
             mvStore.closeImmediately();
             throw DbException.get(ErrorCode.IO_EXCEPTION_1, e, "Closing");
         }
+    }
+
+
+    private static void compact(String sourceFilename, FileStore targetFileStore) {
+        MVStore.Builder targetBuilder = new MVStore.Builder().compress().adoptFileStore(targetFileStore);
+        try (MVStore targetMVStore = targetBuilder.open()) {
+            FileStore sourceFileStore = targetFileStore.open(sourceFilename, true);
+            MVStore.Builder sourceBuilder = new MVStore.Builder();
+            sourceBuilder.readOnly().adoptFileStore(sourceFileStore);
+            try (MVStore sourceMVStore = sourceBuilder.open()) {
+                MVStoreTool.compact(sourceMVStore, targetMVStore);
+            }
+        }
+        MVStoreTool.moveAtomicReplace(targetFileStore.getFileName(), sourceFilename);
     }
 
     /**

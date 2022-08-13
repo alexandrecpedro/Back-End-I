@@ -958,8 +958,12 @@ TABLE @h2@ [ IF NOT EXISTS ] [schemaName.]tableName
 @h2@ [ ENGINE tableEngineName ]
 @h2@ [ WITH tableEngineParamName [,...] ]
 @h2@ [ NOT PERSISTENT ] @h2@ [ TRANSACTIONAL ]
-[ AS query [ WITH [ NO ] DATA ] ]","
+[ AS ( query ) [ WITH [ NO ] DATA ] ]","
 Creates a new table.
+
+Admin rights are required to execute this command
+if and only if ENGINE option is used or custom default table engine is configured in the database.
+Schema owner rights or ALTER ANY SCHEMA rights are required for creation of regular tables and GLOBAL TEMPORARY tables.
 
 Cached tables (the default for regular tables) are persistent,
 and the number of rows is not limited by the main memory.
@@ -2400,105 +2404,126 @@ INTERVAL '1-2' YEAR TO MONTH
 "
 
 "Literals","INTERVAL YEAR","
-INTERVAL [-|+] '[-|+]yearInt' YEAR
+INTERVAL [-|+] '[-|+]yearInt' YEAR [ ( precisionInt ) ]
 ","
 An INTERVAL YEAR literal.
+If precision is specified it should be from 1 to 18.
 ","
 INTERVAL '10' YEAR
 "
 
 "Literals","INTERVAL MONTH","
-INTERVAL [-|+] '[-|+]monthInt' MONTH
+INTERVAL [-|+] '[-|+]monthInt' MONTH [ ( precisionInt ) ]
 ","
 An INTERVAL MONTH literal.
+If precision is specified it should be from 1 to 18.
 ","
 INTERVAL '10' MONTH
 "
 
 "Literals","INTERVAL DAY","
-INTERVAL [-|+] '[-|+]dayInt' DAY
+INTERVAL [-|+] '[-|+]dayInt' DAY [ ( precisionInt ) ]
 ","
 An INTERVAL DAY literal.
+If precision is specified it should be from 1 to 18.
 ","
 INTERVAL '10' DAY
 "
 
 "Literals","INTERVAL HOUR","
-INTERVAL [-|+] '[-|+]hourInt' HOUR
+INTERVAL [-|+] '[-|+]hourInt' HOUR [ ( precisionInt ) ]
 ","
 An INTERVAL HOUR literal.
+If precision is specified it should be from 1 to 18.
 ","
 INTERVAL '10' HOUR
 "
 
 "Literals","INTERVAL MINUTE","
-INTERVAL [-|+] '[-|+]minuteInt' MINUTE
+INTERVAL [-|+] '[-|+]minuteInt' MINUTE [ ( precisionInt ) ]
 ","
 An INTERVAL MINUTE literal.
+If precision is specified it should be from 1 to 18.
 ","
 INTERVAL '10' MINUTE
 "
 
 "Literals","INTERVAL SECOND","
-INTERVAL [-|+] '[-|+]secondInt[.nnnnnnnnn]' SECOND
+INTERVAL [-|+] '[-|+]secondInt[.nnnnnnnnn]'
+SECOND [ ( precisionInt [, fractionalPrecisionInt ] ) ]
 ","
 An INTERVAL SECOND literal.
+If precision is specified it should be from 1 to 18.
+If fractional seconds precision is specified it should be from 0 to 9.
 ","
 INTERVAL '10.123' SECOND
 "
 
 "Literals","INTERVAL YEAR TO MONTH","
-INTERVAL [-|+] '[-|+]yearInt-monthInt' YEAR TO MONTH
+INTERVAL [-|+] '[-|+]yearInt-monthInt' YEAR [ ( precisionInt ) ] TO MONTH
 ","
 An INTERVAL YEAR TO MONTH literal.
+If leading field precision is specified it should be from 1 to 18.
 ","
 INTERVAL '1-6' YEAR TO MONTH
 "
 
 "Literals","INTERVAL DAY TO HOUR","
-INTERVAL [-|+] '[-|+]dayInt hoursInt' DAY TO HOUR
+INTERVAL [-|+] '[-|+]dayInt hoursInt' DAY [ ( precisionInt ) ] TO HOUR
 ","
 An INTERVAL DAY TO HOUR literal.
+If leading field precision is specified it should be from 1 to 18.
 ","
 INTERVAL '10 11' DAY TO HOUR
 "
 
 "Literals","INTERVAL DAY TO MINUTE","
-INTERVAL [-|+] '[-|+]dayInt hh:mm' DAY TO MINUTE
+INTERVAL [-|+] '[-|+]dayInt hh:mm' DAY [ ( precisionInt ) ] TO MINUTE
 ","
 An INTERVAL DAY TO MINUTE literal.
+If leading field precision is specified it should be from 1 to 18.
 ","
 INTERVAL '10 11:12' DAY TO MINUTE
 "
 
 "Literals","INTERVAL DAY TO SECOND","
-INTERVAL [-|+] '[-|+]dayInt hh:mm:ss[.nnnnnnnnn]' DAY TO SECOND
+INTERVAL [-|+] '[-|+]dayInt hh:mm:ss[.nnnnnnnnn]' DAY [ ( precisionInt ) ]
+TO SECOND [ ( fractionalPrecisionInt ) ]
 ","
 An INTERVAL DAY TO SECOND literal.
+If leading field precision is specified it should be from 1 to 18.
+If fractional seconds precision is specified it should be from 0 to 9.
 ","
 INTERVAL '10 11:12:13.123' DAY TO SECOND
 "
 
 "Literals","INTERVAL HOUR TO MINUTE","
-INTERVAL [-|+] '[-|+]hh:mm' HOUR TO MINUTE
+INTERVAL [-|+] '[-|+]hh:mm' HOUR [ ( precisionInt ) ] TO MINUTE
 ","
 An INTERVAL HOUR TO MINUTE literal.
+If leading field precision is specified it should be from 1 to 18.
 ","
 INTERVAL '10:11' HOUR TO MINUTE
 "
 
 "Literals","INTERVAL HOUR TO SECOND","
-INTERVAL [-|+] '[-|+]hh:mm:ss[.nnnnnnnnn]' HOUR TO SECOND
+INTERVAL [-|+] '[-|+]hh:mm:ss[.nnnnnnnnn]' HOUR [ ( precisionInt ) ]
+TO SECOND [ ( fractionalPrecisionInt ) ]
 ","
 An INTERVAL HOUR TO SECOND literal.
+If leading field precision is specified it should be from 1 to 18.
+If fractional seconds precision is specified it should be from 0 to 9.
 ","
 INTERVAL '10:11:12.123' HOUR TO SECOND
 "
 
 "Literals","INTERVAL MINUTE TO SECOND","
-INTERVAL [-|+] '[-|+]mm:ss[.nnnnnnnnn]' MINUTE TO SECOND
+INTERVAL [-|+] '[-|+]mm:ss[.nnnnnnnnn]' MINUTE [ ( precisionInt ) ]
+TO SECOND [ ( fractionalPrecisionInt ) ]
 ","
 An INTERVAL MINUTE TO SECOND literal.
+If leading field precision is specified it should be from 1 to 18.
+If fractional seconds precision is specified it should be from 0 to 9.
 ","
 INTERVAL '11:12.123' MINUTE TO SECOND
 "
@@ -3830,7 +3855,7 @@ CURRENT ROW
     | ( expression )
     | arrayElementReference
     | fieldReference
-    | query
+    | ( query )
     | caseExpression
     | castSpecification
     | userDefinedFunctionName }
@@ -3878,7 +3903,7 @@ ID
 A Unicode String of fixed length.
 
 Length, if any, should be specified in characters, CHARACTERS and OCTETS units have no effect in H2.
-The allowed length is from 1 to 1048576 characters.
+The allowed length is from 1 to 1,000,000,000 characters.
 If length is not specified, 1 character is used by default.
 
 The whole text is kept in memory when using this data type.
@@ -3904,14 +3929,13 @@ CHAR(10)
 { { CHARACTER | CHAR } VARYING
     | VARCHAR
     | { NATIONAL { CHARACTER | CHAR } | NCHAR } VARYING
-    | @c@ { LONGVARCHAR | VARCHAR2 | NVARCHAR | NVARCHAR2 }
     | @h2@ { VARCHAR_CASESENSITIVE } }
 [ ( lengthInt [CHARACTERS|OCTETS] ) ]
 ","
 A Unicode String.
 Use two single quotes ('') to create a quote.
 
-The allowed length is from 1 to 1048576 characters.
+The allowed length is from 1 to 1,000,000,000 characters.
 The length is a size constraint; only the actual data is persisted.
 Length, if any, should be specified in characters, CHARACTERS and OCTETS units have no effect in H2.
 
@@ -3928,8 +3952,7 @@ VARCHAR(255)
 
 "Data Types","CHARACTER LARGE OBJECT Type","
 { { CHARACTER | CHAR } LARGE OBJECT | CLOB
-    | { NATIONAL CHARACTER | NCHAR } LARGE OBJECT | NCLOB
-    | @c@ { TINYTEXT | TEXT | MEDIUMTEXT | LONGTEXT | NTEXT } }
+    | { NATIONAL CHARACTER | NCHAR } LARGE OBJECT | NCLOB }
 [ ( lengthLong [K|M|G|T|P] [CHARACTERS|OCTETS]) ]
 ","
 CHARACTER LARGE OBJECT is intended for very large Unicode character string values.
@@ -3959,7 +3982,7 @@ CLOB(10K)
 Same as VARCHAR, but not case sensitive when comparing.
 Stored in mixed case.
 
-The allowed length is from 1 to 1048576 characters.
+The allowed length is from 1 to 1,000,000,000 characters.
 The length is a size constraint; only the actual data is persisted.
 Length, if any, should be specified in characters, CHARACTERS and OCTETS units have no effect in H2.
 
@@ -3977,7 +4000,7 @@ BINARY [ ( lengthInt ) ]
 ","
 Represents a binary string (byte array) of fixed predefined length.
 
-The allowed length is from 1 to 1048576 bytes.
+The allowed length is from 1 to 1,000,000,000 bytes.
 If length is not specified, 1 byte is used by default.
 
 The whole binary string is kept in memory when using this data type.
@@ -3999,13 +4022,12 @@ BINARY(1000)
 "
 
 "Data Types","BINARY VARYING Type","
-{ BINARY VARYING | VARBINARY
-    | @c@ { LONGVARBINARY | RAW | BYTEA } }
+{ BINARY VARYING | VARBINARY }
 [ ( lengthInt ) ]
 ","
 Represents a byte array.
 
-The allowed length is from 1 to 1048576 bytes.
+The allowed length is from 1 to 1,000,000,000 bytes.
 The length is a size constraint; only the actual data is persisted.
 
 The whole binary string is kept in memory when using this data type.
@@ -4020,8 +4042,7 @@ VARBINARY(1000)
 "
 
 "Data Types","BINARY LARGE OBJECT Type","
-{ BINARY LARGE OBJECT | BLOB
-    | @c@ { TINYBLOB | MEDIUMBLOB | LONGBLOB | IMAGE } }
+{ BINARY LARGE OBJECT | BLOB }
 [ ( lengthLong [K|M|G|T|P]) ]
 ","
 BINARY LARGE OBJECT is intended for very large binary values such as files or images.
@@ -4038,7 +4059,7 @@ BLOB(10K)
 "
 
 "Data Types","BOOLEAN Type","
-BOOLEAN | @c@ { BIT | BOOL }
+BOOLEAN
 ","
 Possible values: TRUE, FALSE, and UNKNOWN (NULL).
 
@@ -4066,7 +4087,7 @@ TINYINT
 "
 
 "Data Types","SMALLINT Type","
-SMALLINT | @c@ { INT2 }
+SMALLINT
 ","
 Possible values: -32768 to 32767.
 
@@ -4082,7 +4103,7 @@ SMALLINT
 "
 
 "Data Types","INTEGER Type","
-INTEGER | INT | @c@ { MEDIUMINT | INT4 | SIGNED }
+INTEGER | INT
 ","
 Possible values: -2147483648 to 2147483647.
 
@@ -4094,7 +4115,7 @@ INT
 "
 
 "Data Types","BIGINT Type","
-BIGINT | @c@ INT8
+BIGINT
 ","
 Possible values: -9223372036854775808 to 9223372036854775807.
 
@@ -4120,7 +4141,7 @@ NUMERIC(20, 2)
 "
 
 "Data Types","REAL Type","
-REAL | FLOAT ( precisionInt ) | @c@ { FLOAT4 }
+REAL | FLOAT ( precisionInt )
 ","
 A single precision floating point number.
 Should not be used to represent currency values, because of rounding problems.
@@ -4133,7 +4154,7 @@ REAL
 "
 
 "Data Types","DOUBLE PRECISION Type","
-DOUBLE PRECISION | FLOAT [ ( precisionInt ) ] | @c@ { DOUBLE | FLOAT8 }
+DOUBLE PRECISION | FLOAT [ ( precisionInt ) ]
 ","
 A double precision floating point number.
 Should not be used to represent currency values, because of rounding problems.
@@ -4231,11 +4252,9 @@ TIME(9) WITH TIME ZONE
 
 "Data Types","TIMESTAMP Type","
 TIMESTAMP [ ( precisionInt ) ] [ WITHOUT TIME ZONE ]
-    | @c@ { DATETIME [ ( precisionInt ) ] | SMALLDATETIME }
 ","
 The timestamp data type. The proleptic Gregorian calendar is used.
 If fractional seconds precision is specified it should be from 0 to 9, 6 is default.
-Fractional seconds precision of SMALLDATETIME is always 0 and cannot be specified.
 
 This data type holds the local date and time without time zone information.
 It cannot distinguish timestamps near transitions from DST to normal time.
@@ -4306,7 +4325,7 @@ INTERVAL DAY TO SECOND
 @h2@ { JAVA_OBJECT | OBJECT | OTHER } [ ( lengthInt ) ]
 ","
 This type allows storing serialized Java objects. Internally, a byte array with serialized form is used.
-The allowed length is from 1 (useful only with custom serializer) to 1048576 bytes.
+The allowed length is from 1 (useful only with custom serializer) to 1,000,000,000 bytes.
 The length is a size constraint; only the actual data is persisted.
 
 Serialization and deserialization is done on the client side only with two exclusions described below.
@@ -4337,8 +4356,8 @@ A type with enumerated values.
 Mapped to ""java.lang.String"".
 
 Duplicate and empty values are not permitted.
-The maximum allowed length of value is 1048576 characters.
 The maximum number of values is 65536.
+The maximum allowed length of complete data type definition with all values is 1,000,000,000 characters.
 ","
 ENUM('clubs', 'diamonds', 'hearts', 'spades')
 "
@@ -4366,7 +4385,8 @@ A constraint with required spatial reference system identifier (SRID) can be set
 
 Mapped to ""org.locationtech.jts.geom.Geometry"" if JTS library is in classpath and to ""java.lang.String"" otherwise.
 May be represented in textual format using the WKT (well-known text) or EWKT (extended well-known text) format.
-Values are stored internally in EWKB (extended well-known binary) format, the maximum allowed length is 1048576 bytes.
+Values are stored internally in EWKB (extended well-known binary) format,
+the maximum allowed length is 1,000,000,000 bytes.
 Only a subset of EWKB and EWKT features is supported.
 Supported objects are POINT, LINESTRING, POLYGON, MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, and GEOMETRYCOLLECTION.
 Supported dimension systems are 2D (XY), Z (XYZ), M (XYM), and ZM (XYZM).
@@ -4389,7 +4409,7 @@ A RFC 8259-compliant JSON text.
 
 See also [json](https://h2database.com/html/grammar.html#json) literal grammar.
 Mapped to ""byte[]"".
-The allowed length is from 1 to 1048576 bytes.
+The allowed length is from 1 to 1,000,000,000 bytes.
 The length is a size constraint; only the actual data is persisted.
 
 To set a JSON value with ""java.lang.String"" in a PreparedStatement use a ""FORMAT JSON"" data format
@@ -5106,19 +5126,6 @@ This method returns value of the same type as argument, but with adjusted precis
 ROUND(N, 2)
 "
 
-"Functions (Numeric)","ROUNDMAGIC","
-@h2@ ROUNDMAGIC(numeric)
-","
-This function rounds numbers in a good way, but it is slow.
-It has a special handling for numbers around 0.
-Only numbers smaller or equal +/-1000000000000 are supported.
-The value is converted to a String internally, and then the last 4 characters are checked.
-'000x' becomes '0000' and '999x' becomes '999999', which is rounded automatically.
-This method returns a double.
-","
-ROUNDMAGIC(N/3*3)
-"
-
 "Functions (Numeric)","SECURE_RAND","
 @h2@ SECURE_RAND(int)
 ","
@@ -5404,9 +5411,9 @@ RPAD(TEXT, 10, '-')
 "
 
 "Functions (String)","LTRIM","
-@c@ LTRIM(string)
+@c@ LTRIM(string [, characterToTrimString])
 ","
-Removes all leading spaces from a string.
+Removes all leading spaces or other specified characters from a string.
 
 This function is deprecated, use [TRIM](https://h2database.com/html/functions.html#trim) instead of it.
 ","
@@ -5414,9 +5421,9 @@ LTRIM(NAME)
 "
 
 "Functions (String)","RTRIM","
-@c@ RTRIM(string)
+@c@ RTRIM(string [, characterToTrimString])
 ","
-Removes all trailing spaces from a string.
+Removes all trailing spaces or other specified characters from a string.
 
 This function is deprecated, use [TRIM](https://h2database.com/html/functions.html#trim) instead of it.
 ","
@@ -5680,7 +5687,7 @@ CALL TRANSLATE('Hello world', 'eo', 'EO')
 "
 
 "Functions (Time and Date)","CURRENT_DATE","
-CURRENT_DATE | @c@ { CURDATE() | SYSDATE | TODAY }
+CURRENT_DATE
 ","
 Returns the current date.
 
@@ -5733,7 +5740,7 @@ CURRENT_TIMESTAMP(9)
 "
 
 "Functions (Time and Date)","LOCALTIME","
-LOCALTIME [ (int) ] | @c@ CURTIME([ int ])
+LOCALTIME [ (int) ]
 ","
 Returns the current time without time zone.
 If fractional seconds precision is specified it should be from 0 to 9, 0 is default.
@@ -5752,7 +5759,7 @@ LOCALTIME(9)
 "
 
 "Functions (Time and Date)","LOCALTIMESTAMP","
-LOCALTIMESTAMP [ (int) ] | @c@ NOW( [ int ] )
+LOCALTIMESTAMP [ (int) ]
 ","
 Returns the current timestamp without time zone.
 If fractional seconds precision is specified it should be from 0 to 9, 6 is default.

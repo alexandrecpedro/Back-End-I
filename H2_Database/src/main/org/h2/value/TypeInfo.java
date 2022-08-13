@@ -609,6 +609,8 @@ public class TypeInfo extends ExtTypeInfo implements Typed {
         case Value.DOUBLE:
             precision = -1L;
             break;
+        case Value.GEOMETRY:
+            return getHigherGeometry(type1, type2);
         case Value.ARRAY:
             return getHigherArray(type1, type2, dimensions(type1), dimensions(type2));
         case Value.ROW:
@@ -621,6 +623,46 @@ public class TypeInfo extends ExtTypeInfo implements Typed {
                 precision, //
                 Math.max(type1.getScale(), type2.getScale()), //
                 dataType == t1 && ext1 != null ? ext1 : dataType == t2 ? type2.extTypeInfo : null);
+    }
+
+    private static TypeInfo getHigherGeometry(TypeInfo type1, TypeInfo type2) {
+        int t;
+        Integer srid;
+        ExtTypeInfo ext1 = type1.getExtTypeInfo(), ext2 = type2.getExtTypeInfo();
+        if (ext1 instanceof ExtTypeInfoGeometry) {
+            if (ext2 instanceof ExtTypeInfoGeometry) {
+                ExtTypeInfoGeometry g1 = (ExtTypeInfoGeometry) ext1, g2 = (ExtTypeInfoGeometry) ext2;
+                t = g1.getType();
+                srid = g1.getSrid();
+                int t2 = g2.getType();
+                Integer srid2 = g2.getSrid();
+                if (Objects.equals(srid, srid2)) {
+                    if (t == t2) {
+                        return type1;
+                    } else if (srid == null) {
+                        return TYPE_GEOMETRY;
+                    } else {
+                        t = 0;
+                    }
+                } else if (srid == null || srid2 == null) {
+                    if (t == 0 || t != t2) {
+                        return TYPE_GEOMETRY;
+                    } else {
+                        srid = null;
+                    }
+                } else {
+                    throw DbException.get(ErrorCode.TYPES_ARE_NOT_COMPARABLE_2, type1.getTraceSQL(),
+                            type2.getTraceSQL());
+                }
+            } else {
+                return type2.getValueType() == Value.GEOMETRY ? TypeInfo.TYPE_GEOMETRY : type1;
+            }
+        } else if (ext2 instanceof ExtTypeInfoGeometry) {
+            return type1.getValueType() == Value.GEOMETRY ? TypeInfo.TYPE_GEOMETRY : type2;
+        } else {
+            return TYPE_GEOMETRY;
+        }
+        return new TypeInfo(Value.GEOMETRY, -1L, -1, new ExtTypeInfoGeometry(t, srid));
     }
 
     private static int dimensions(TypeInfo type) {

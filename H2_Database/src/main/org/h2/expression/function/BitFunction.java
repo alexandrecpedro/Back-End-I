@@ -13,6 +13,7 @@ import org.h2.expression.TypedValueExpression;
 import org.h2.expression.aggregate.Aggregate;
 import org.h2.expression.aggregate.AggregateType;
 import org.h2.message.DbException;
+import org.h2.mvstore.db.Store;
 import org.h2.util.Bits;
 import org.h2.value.DataType;
 import org.h2.value.TypeInfo;
@@ -654,8 +655,11 @@ public final class BitFunction extends Function1_2 {
             default:
                 return this;
             }
-            return new Aggregate(t, new Expression[] { l.getSubexpression(0) }, l.getSelect(), l.isDistinct())
-                    .optimize(session);
+            Aggregate aggregate = new Aggregate(t, new Expression[] { l.getSubexpression(0) }, l.getSelect(),
+                    l.isDistinct());
+            aggregate.setFilterCondition(l.getFilterCondition());
+            aggregate.setOverCondition(l.getOverCondition());
+            return aggregate.optimize(session);
         }
         return this;
     }
@@ -713,7 +717,7 @@ public final class BitFunction extends Function1_2 {
         case Value.BIGINT:
             return t;
         }
-        throw DbException.getInvalidExpressionTypeException("bit function argument", arg);
+        throw Store.getInvalidExpressionTypeException("bit function argument", arg);
     }
 
     @Override

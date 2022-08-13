@@ -15,13 +15,13 @@ public class Constants {
     /**
      * The build date is updated for each public release.
      */
-    public static final String BUILD_DATE = "2022-01-17";
+    public static final String BUILD_DATE = "2022-06-13";
 
     /**
      * Sequential version number. Even numbers are used for official releases,
      * odd numbers are used for development builds.
      */
-    public static final int BUILD_ID = 210;
+    public static final int BUILD_ID = 214;
 
     /**
      * Whether this is a snapshot version.
@@ -267,8 +267,11 @@ public class Constants {
     /**
      * The maximum allowed length for character string, binary string, and other
      * data types based on them; excluding LOB data types.
+     * <p>
+     * This needs to be less than (2^31-8)/2 to avoid running into the limit on
+     * encoding data fields when storing rows.
      */
-    public static final int MAX_STRING_LENGTH = 1024 * 1024;
+    public static final int MAX_STRING_LENGTH = 1000_000_000;
 
     /**
      * The maximum allowed precision of numeric data types.
