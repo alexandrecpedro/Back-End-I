@@ -35,7 +35,7 @@ public class EstudanteDaoH2Test {
     @Test
     public void buscarTodosOsEstudantesTest() {
         List<Estudante> estudantes = estudanteDao.buscarTodos();
-        Assert.assertEquals(estudantes.size(), 5);
+        Assert.assertEquals(estudantes.size(), 4);
     }
 
     @Test

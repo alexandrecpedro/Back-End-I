@@ -1,6 +1,0 @@
-
-CREATE TABLE IF NOT EXISTS STUDENTS(
-id varchar(255),
-NOME varchar(255),
-SOBRENOME varchar(255)
-);

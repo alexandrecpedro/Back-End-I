@@ -76,7 +76,7 @@ public class EstudanteDaoH2 implements IDao<Estudante> {
     public List<Estudante> buscarTodos() {
         Connection connection = configuracaoJDBC.conectarComBancoDeDados();
         Statement stmt = null;
-        String query = "SELECT *  FROM ESTUDANTES";
+        String query = "SELECT * FROM ESTUDANTES";
         List<Estudante> estudantes = new ArrayList<>();
         try {
             stmt = connection.createStatement();
