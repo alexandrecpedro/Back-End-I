@@ -12,18 +12,18 @@ public class Airplane {
     private int id;
     private String brand, model;
     private int registration;
-    private Date dateEntryIntoservice;
+    private Date dateEntryIntoService;
 
     /** Constructor **/
     public Airplane() {
     }
 
-    public Airplane(int id, String brand, String model, int registration, Date dateEntryIntoservice) {
+    public Airplane(int id, String brand, String model, int registration, Date dateEntryIntoService) {
         this.id = id;
         this.brand = brand;
         this.model = model;
         this.registration = registration;
-        this.dateEntryIntoservice = dateEntryIntoservice;
+        this.dateEntryIntoService = dateEntryIntoService;
     }
 
     /** Getters/Setters **/
@@ -59,24 +59,28 @@ public class Airplane {
         this.registration = registration;
     }
 
-    public Date getDateEntryIntoservice() {
-        return dateEntryIntoservice;
+    public Date getDateEntryIntoService() {
+        return dateEntryIntoService;
     }
 
-    public void setDateEntryIntoservice(Date dateEntryIntoservice) {
-        this.dateEntryIntoservice = dateEntryIntoservice;
+    public void setdateEntryIntoService(Date dateEntryIntoService) {
+        this.dateEntryIntoService = dateEntryIntoService;
+    }
+
+    @Override
+    public String toString() {
+        return "Airplane{" +
+                "sdf=" + sdf +
+                ", id=" + id +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", registration=" + registration +
+                ", dateEntryIntoService=" + sdf.format(dateEntryIntoService) +
+                '}';
     }
 
     /** Methods **/
-    @Override
-    public String toString() {
-        return "Airplane" +
-                "\nid=" + id +
-                "\nBrand = " + brand +
-                "\nModel = " + model +
-                "\nRegistration = " + registration +
-                "\nDate entry into service = " + dateEntryIntoservice;
-    }
+
 
     @Override
     public boolean equals(Object o) {

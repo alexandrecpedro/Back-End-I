@@ -3,7 +3,6 @@ package Airplane.main.service;
 import Airplane.main.dao.IDao;
 import Airplane.main.model.Airplane;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class AirplaneService {
@@ -16,19 +15,19 @@ public class AirplaneService {
     }
 
     /** Methods **/
-    public Airplane insert(Airplane airplane) {
-        return airplaneIDao.insert(airplane);
+    public void insert(Airplane airplane) {
+        airplaneIDao.insert(airplane);
     }
 
-    public void findById(Integer id) throws SQLException {
-        airplaneIDao.findById(id);
+    public Airplane findById(Integer id) {
+        return airplaneIDao.findById(id);
     }
 
-    public void deleteById(Integer id) throws SQLException {
+    public void deleteById(Integer id) {
         airplaneIDao.deleteById(id);
     }
 
-    public List<Airplane> findAll() throws SQLException {
+    public List<Airplane> findAll() {
         return airplaneIDao.findAll();
     }
 }

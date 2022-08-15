@@ -19,8 +19,7 @@ public class AirplaneDaoH2 implements IDao<Airplane> {
         this.connection = settingJDBC.conectWithDatabase();
     }
 
-    /** Methods
-     * @return**/
+    /** Methods **/
     @Override
     public Airplane insert(Airplane obj) {
         PreparedStatement preparedStatement = null;
@@ -34,7 +33,7 @@ public class AirplaneDaoH2 implements IDao<Airplane> {
             preparedStatement.setString(2, obj.getBrand());
             preparedStatement.setString(3, obj.getModel());
             preparedStatement.setInt(4, obj.getRegistration());
-            preparedStatement.setDate(5, new java.sql.Date(obj.getDateEntryIntoservice().getTime()));
+            preparedStatement.setDate(5, new java.sql.Date(obj.getDateEntryIntoService().getTime()));
 
             int rowsAffect = preparedStatement.executeUpdate();
 
@@ -42,6 +41,7 @@ public class AirplaneDaoH2 implements IDao<Airplane> {
 
             preparedStatement.close();
             connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -60,6 +60,7 @@ public class AirplaneDaoH2 implements IDao<Airplane> {
 
             preparedStatement.close();
             connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -75,7 +76,7 @@ public class AirplaneDaoH2 implements IDao<Airplane> {
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery(query);
             while (resultSet.next()) {
-                airplane = instantiateAirplane(resultSet);
+                instantiateAirplane(resultSet);
             }
 
             preparedStatement.close();
@@ -85,7 +86,7 @@ public class AirplaneDaoH2 implements IDao<Airplane> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return airplane;
+        return null;
     }
 
     @Override

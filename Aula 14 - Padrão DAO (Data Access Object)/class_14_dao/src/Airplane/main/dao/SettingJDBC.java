@@ -29,8 +29,8 @@ public class SettingJDBC {
         if (connection == null) {
             try {
                 connection = DriverManager.getConnection(dbUrl, userName, userPassword);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return connection;

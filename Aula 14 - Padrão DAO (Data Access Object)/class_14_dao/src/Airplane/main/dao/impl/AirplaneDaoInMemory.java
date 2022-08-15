@@ -14,8 +14,7 @@ public class AirplaneDaoInMemory implements IDao<Airplane> {
         this.airplaneRepository = airplaneRepository;
     }
 
-    /** Methods
-     * @return**/
+    /** Methods **/
     @Override
     public Airplane insert(Airplane obj) {
         airplaneRepository.add(obj);

@@ -2,7 +2,6 @@ package Airplane.main.dao;
 
 import Airplane.main.model.Airplane;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface IDao<T> {
