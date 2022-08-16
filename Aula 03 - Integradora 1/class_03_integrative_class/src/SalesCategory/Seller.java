@@ -8,7 +8,7 @@ public abstract class Seller {
     protected int PONTOS_POR_VENDA;
 
     /** Methods **/
-    public void vender(int qtdVendas){
+    public void vender(int qtdVendas) {
         this.vendas += qtdVendas;
         System.out.println(this.nome +" realizou "+ qtdVendas + " vendas.");
     }
@@ -18,16 +18,16 @@ public abstract class Seller {
 
     // TEMPLATE METHOD - recebe o total de pontos calculados a partir
     // da subclasse e valida cada item para retornar a categoria
-    public String mostrarCategoria(){
+    public String mostrarCategoria() {
         int pontuacao = calcularPontos();
-        if (pontuacao > 40 )
-            return "Mestre";
-        else if (pontuacao > 30 && pontuacao < 41)
-            return "Bom";
-        else if (pontuacao > 19 && pontuacao < 31)
-            return "Aprendiz";
-        else
+        if (pontuacao < 20)
             return "Novato";
+        else if (pontuacao < 31)
+            return "Aprendiz";
+        else if (pontuacao < 41)
+            return "Bom";
+        else
+            return "Mestre";
     }
 
     @Override

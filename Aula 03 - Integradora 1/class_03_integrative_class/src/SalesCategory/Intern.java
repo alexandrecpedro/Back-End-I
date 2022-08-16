@@ -14,9 +14,9 @@ public class Intern extends Seller {
     }
 
     @Override
-    public String mostrarCategoria(){
+    public String mostrarCategoria() {
         int pontuacao = calcularPontos();
-        if (pontuacao > 49 )
+        if (pontuacao > 49)
             return "Estagiário(a) experiente";
         else
             return "Estagiário(a) novato";

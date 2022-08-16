@@ -2,7 +2,7 @@ package SalesCategory;
 
 public class Affiliated extends Seller {
     /** Constructor **/
-    public Affiliated(String nome){
+    public Affiliated(String nome) {
         super.nome = nome;
         super.PONTOS_POR_VENDA = 15;
     }
