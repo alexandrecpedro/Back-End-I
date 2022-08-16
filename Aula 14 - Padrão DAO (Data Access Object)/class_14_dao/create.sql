@@ -11,3 +11,11 @@ brand VARCHAR(60),
 model VARCHAR(60),
 registration INT,
 dateEntryIntoService DATE);
+
+DROP TABLE IF EXISTS MEDICINE;
+CREATE TABLE MEDICINE (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(64),
+laboratory VARCHAR(64),
+quantity INT,
+price DOUBLE);
