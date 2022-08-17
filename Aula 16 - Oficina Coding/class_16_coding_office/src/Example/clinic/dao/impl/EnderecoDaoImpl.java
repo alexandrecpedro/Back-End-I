@@ -1,6 +1,6 @@
 package Example.clinic.dao.impl;
 
-import Example.clinic.dao.ConfiguracaoJDBC;
+import Example.clinic.dao.SettingJDBC;
 import Example.clinic.dao.IDao;
 import Example.clinic.model.Endereco;
 import org.apache.log4j.Logger;
@@ -15,18 +15,18 @@ import java.util.List;
 public class EnderecoDaoImpl implements IDao<Endereco> {
     /** Attributes **/
     private static final Logger LOGGER = Logger.getLogger(EnderecoDaoImpl.class);
-    private ConfiguracaoJDBC configuracaoJDBC;
+    private SettingJDBC settingJDBC;
 
     /** Constructor **/
-    public EnderecoDaoImpl(ConfiguracaoJDBC configuracaoJDBC) {
-        this.configuracaoJDBC = configuracaoJDBC;
+    public EnderecoDaoImpl(SettingJDBC settingJDBC) {
+        this.settingJDBC = settingJDBC;
     }
 
     /** Methods **/
     @Override
     public Endereco salvar(Endereco endereco) {
         LOGGER.debug("Salvando endereço no H2...");
-        Connection connection = configuracaoJDBC.connectWithDatabase();
+        Connection connection = settingJDBC.connectWithDatabase();
         Statement statement = null;
         String query = String.format(
                 "INSERT INTO enderecos (rua, numero, cidade, bairro) VALUES ('%s', '%d', '%s', '%s')",
@@ -48,7 +48,7 @@ public class EnderecoDaoImpl implements IDao<Endereco> {
 
     @Override
     public List<Endereco> buscarTodos() {
-        Connection connection = configuracaoJDBC.connectWithDatabase();
+        Connection connection = settingJDBC.connectWithDatabase();
         Statement statement = null;
         String query = String.format("SELECT * FROM enderecos");
         List<Endereco> enderecos = new ArrayList<>();
@@ -72,7 +72,7 @@ public class EnderecoDaoImpl implements IDao<Endereco> {
 
     @Override
     public Endereco excluir(Endereco endereco) {
-        Connection connection = configuracaoJDBC.connectWithDatabase();
+        Connection connection = settingJDBC.connectWithDatabase();
         Statement statement = null;
         String query = String.format("DELETE FROM enderecos WHERE id = %d", endereco.getId());
 
@@ -88,7 +88,7 @@ public class EnderecoDaoImpl implements IDao<Endereco> {
 
     @Override
     public Endereco modificar(Endereco endereco, String rua) {
-        Connection connection = configuracaoJDBC.connectWithDatabase();
+        Connection connection = settingJDBC.connectWithDatabase();
         Statement statement = null;
         String query = String.format("UPDATE enderecos SET rua = %s WHERE id = %d", rua, endereco.getId());
 

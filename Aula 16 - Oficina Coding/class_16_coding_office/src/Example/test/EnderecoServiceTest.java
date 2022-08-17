@@ -1,6 +1,6 @@
 package Example.test;
 
-import Example.clinic.dao.ConfiguracaoJDBC;
+import Example.clinic.dao.SettingJDBC;
 import Example.clinic.dao.impl.EnderecoDaoImpl;
 import Example.clinic.model.Endereco;
 import Example.clinic.service.EnderecoService;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class EnderecoServiceTest {
     /** Attributes **/
     public static final Logger LOGGER = Logger.getLogger(EnderecoServiceTest.class);
-    private EnderecoService enderecoService = new EnderecoService(new EnderecoDaoImpl(new ConfiguracaoJDBC()));
+    private EnderecoService enderecoService = new EnderecoService(new EnderecoDaoImpl(new SettingJDBC()));
     
     /** Tests **/
     @BeforeAll
