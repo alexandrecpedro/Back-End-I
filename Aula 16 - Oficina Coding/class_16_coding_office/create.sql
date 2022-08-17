@@ -1,8 +1,10 @@
-DROP TABLE IF EXISTS enderecos;
-CREATE TABLE IF NOT EXISTS enderecos (
+--DROP TABLE IF EXISTS employees;
+CREATE TABLE IF NOT EXISTS employees (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    rua VARCHAR(64),
-    numero VARCHAR(8),
-    cidade VARCHAR(32),
-    bairro VARCHAR(32)
+    firstName VARCHAR(64),
+    lastName VARCHAR(64),
+    cpf VARCHAR(14),
+    phone VARCHAR(20),
+    position VARCHAR(32),
+    access BIT
 );

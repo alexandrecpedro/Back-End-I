@@ -1,4 +1,4 @@
-package Example.clinic.dao;
+package Employee.employee.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +17,7 @@ public class SettingJDBC {
 
     public SettingJDBC() {
         this.jdbcDriver = "org.h2.Driver";
-        this.dbUrl = "jdbc:h2:mem:pacientes;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'create.sql'";
+        this.dbUrl = "jdbc:h2:~/test;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'create.sql'";
         this.userName = "sa";
         this.userPassword = "";
     }
