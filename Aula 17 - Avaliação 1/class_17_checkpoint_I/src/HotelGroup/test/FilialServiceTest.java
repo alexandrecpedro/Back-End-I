@@ -5,7 +5,6 @@ import HotelGroup.filial.dao.impl.FilialDaoImpl;
 import HotelGroup.filial.model.Filial;
 import HotelGroup.filial.service.FilialService;
 import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class FilialServiceTest {
-    /** Attributes **/
-    private final static Logger LOGGER = Logger.getLogger(FilialServiceTest.class);
+    /** Attribute **/
     private FilialService filialService = new FilialService(new FilialDaoImpl(new ConfiguracaoJDBC()));
     
     /** Tests **/
