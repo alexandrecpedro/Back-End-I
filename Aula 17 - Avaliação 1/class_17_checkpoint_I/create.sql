@@ -1,20 +1,10 @@
-DROP TABLE IF EXISTS pacientes;
-DROP TABLE IF EXISTS enderecos;
-CREATE TABLE IF NOT EXISTS enderecos (
+--DROP TABLE IF EXISTS filiais;
+CREATE TABLE IF NOT EXISTS filiais (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    rua VARCHAR(64),
+    nomeFilial VARCHAR(64),
+    logradouro VARCHAR(64),
     numero VARCHAR(8),
     cidade VARCHAR(32),
-    bairro VARCHAR(32)
+    estado VARCHAR(32),
+    e5Estrelas BOOLEAN
 );
-
-
-CREATE TABLE IF NOT EXISTS pacientes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(64),
-    sobrenome VARCHAR(64),
-    rg VARCHAR(20),
-    dataCadastro DATE,
-    idEndereco INT
-);
-ALTER TABLE pacientes ADD FOREIGN KEY (idEndereco) REFERENCES enderecos(id);

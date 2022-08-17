@@ -1,8 +1,9 @@
-package Checkpoint_I.clinic.dao.impl;
+package Example.clinic.dao.impl;
 
-import DentistClinic.clinic.dao.ConfiguracaoJDBC;
-import DentistClinic.clinic.dao.IDao;
-import DentistClinic.clinic.model.Endereco;
+import Example.clinic.dao.ConfiguracaoJDBC;
+import Example.clinic.dao.IDao;
+import Example.clinic.model.Endereco;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EnderecoDaoImpl implements IDao<Endereco> {
-    /** Attribute **/
+    /** Attributes **/
+    private static final Logger LOGGER = Logger.getLogger(EnderecoDaoImpl.class);
     private ConfiguracaoJDBC configuracaoJDBC;
 
     /** Constructor **/
@@ -23,6 +25,7 @@ public class EnderecoDaoImpl implements IDao<Endereco> {
     /** Methods **/
     @Override
     public Endereco salvar(Endereco endereco) {
+        LOGGER.debug("Salvando endereço no H2...");
         Connection connection = configuracaoJDBC.connectWithDatabase();
         Statement statement = null;
         String query = String.format(

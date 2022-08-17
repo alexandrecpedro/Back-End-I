@@ -1,4 +1,4 @@
-package Checkpoint_I.clinic.dao;
+package HotelGroup.filial.dao.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +17,7 @@ public class ConfiguracaoJDBC {
 
     public ConfiguracaoJDBC() {
         this.jdbcDriver = "org.h2.Driver";
-        this.dbUrl = "jdbc:h2:mem:pacientes;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'create.sql'";
+        this.dbUrl = "jdbc:h2:mem:filiais;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'create.sql'";
         this.userName = "sa";
         this.userPassword = "";
     }

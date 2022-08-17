@@ -1,4 +1,4 @@
-package Checkpoint_I.clinic.dao;
+package Example.clinic.dao;
 
 import java.util.List;
 

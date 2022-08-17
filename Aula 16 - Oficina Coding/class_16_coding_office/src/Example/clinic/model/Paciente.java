@@ -1,4 +1,4 @@
-package Checkpoint_I.clinic.model;
+package Example.clinic.model;
 
 import java.time.LocalDate;
 

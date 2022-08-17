@@ -1,7 +1,7 @@
-package Checkpoint_I.clinic.service;
+package Example.clinic.service;
 
-import DentistClinic.clinic.model.Endereco;
-import DentistClinic.clinic.dao.IDao;
+import Example.clinic.model.Endereco;
+import Example.clinic.dao.IDao;
 
 import java.util.List;
 
