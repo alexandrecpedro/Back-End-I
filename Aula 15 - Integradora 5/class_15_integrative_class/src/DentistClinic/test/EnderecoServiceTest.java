@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class EnderecoServiceTest {
@@ -23,11 +25,20 @@ class EnderecoServiceTest {
     }
 
     @Test
-    public void saveAddressTest() {
-        LOGGER.info("Registering address at H2...");
+    public void salvarEnderecoTest() {
+        LOGGER.info("Salvando endereço no H2...");
         Endereco endereco = enderecoService.salvar(new Endereco("Av. Eldorado", 2154,
                 "São Paulo", "Morumbi"));
         assertNotNull(endereco.getId());
         System.out.println(endereco.toString());
+    }
+
+    @Test
+    public void buscarTodosTest() {
+        Endereco endereco = enderecoService.salvar(new Endereco("Av. Eldorado", 2154,
+                "São Paulo", "Morumbi"));
+
+        List<Endereco> enderecos = enderecoService.buscarTodos();
+        assertNotNull(enderecos);
     }
 }
