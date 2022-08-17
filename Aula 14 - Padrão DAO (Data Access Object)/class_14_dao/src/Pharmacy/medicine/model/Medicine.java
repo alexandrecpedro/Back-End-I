@@ -7,23 +7,23 @@ public class Medicine {
     NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
 
     /** Attributes **/
-    private Long id;
+    private Integer id;
     private String name, laboratory;
-    private int quantity;
-    private double price;
+    private Integer quantity;
+    private Double price;
 
     /** Constructor **/
     public Medicine() {
     }
 
-    public Medicine(String name, String laboratory, int quantity, double price) {
+    public Medicine(String name, String laboratory, Integer quantity, Double price) {
         this.name = name;
         this.laboratory = laboratory;
         this.quantity = quantity;
         this.price = price;
     }
 
-    public Medicine(Long id, String name, String laboratory, int quantity, double price) {
+    public Medicine(Integer id, String name, String laboratory, Integer quantity, Double price) {
         this.id = id;
         this.name = name;
         this.laboratory = laboratory;
@@ -32,11 +32,11 @@ public class Medicine {
     }
 
     /** Getters/Setters **/
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -56,19 +56,19 @@ public class Medicine {
         this.laboratory = laboratory;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -76,8 +76,7 @@ public class Medicine {
     @Override
     public String toString() {
         return "Medicine {" +
-                " id = " + id +
-                " | name = " + name +
+                " name = " + name +
                 " | laboratory = " + laboratory +
                 " | quantity = " + quantity +
                 " | price = " + numberFormat.format(price) +

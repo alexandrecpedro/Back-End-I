@@ -7,7 +7,6 @@ import java.sql.SQLException;
 public class SettingJDBC {
     /** Attributes **/
     private String jdbcDriver, dbUrl, userName, userPassword;
-    private Connection connection;
 
     /** Constructor **/
     public SettingJDBC(String jdbcDriver, String dbUrl, String userName, String userPassword) {
@@ -19,20 +18,22 @@ public class SettingJDBC {
 
     public SettingJDBC() {
         this.jdbcDriver = "org.h2.Driver";
-        this.dbUrl = "jdbc:h2:mem:subjects;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'create.sql'";
+        this.dbUrl = "jdbc:h2:mem:medicines;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'create.sql'";
         this.userName = "sa";
         this.userPassword = "";
     }
 
     /** Method **/
-    public Connection conectWithDatabase() {
-        if (connection == null) {
-            try {
-                connection = DriverManager.getConnection(dbUrl, userName, userPassword);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public Connection connectWithDatabase() {
+        Connection connection = null;
+
+        try {
+            Class.forName(jdbcDriver).newInstance();
+            connection = DriverManager.getConnection(dbUrl, userName, userPassword);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return connection;
     }
 }

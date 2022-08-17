@@ -18,20 +18,4 @@ public class MedicineService {
     public Medicine save(Medicine medicine) {
         return medicineIDao.save(medicine);
     }
-
-    public Medicine findById(Long id) {
-        return medicineIDao.findById(id);
-    }
-
-    public List<Medicine> findAll() {
-        return medicineIDao.findAll();
-    }
-
-    public void deleteById(Long id) {
-        medicineIDao.deleteById(id);
-    }
-
-    public void update(Medicine medicine) {
-        medicineIDao.update(medicine);
-    }
 }

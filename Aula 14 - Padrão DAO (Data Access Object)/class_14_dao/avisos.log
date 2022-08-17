@@ -1,0 +1,50 @@
+[16-08-2022 20:22:55] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 20:22:56] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 20:22:56] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Doril | laboratory = HYPERA PHARMA | quantity = 4 | price = R$ 9,13 }
+[16-08-2022 20:22:57] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 20:29:25] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Ibuprofeno | laboratory = Aché | quantity = 395 | price = R$ 23,00 }
+[16-08-2022 20:29:26] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 20:33:02] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 20:33:02] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 20:33:02] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Doril | laboratory = HYPERA PHARMA | quantity = 4 | price = R$ 9,13 }
+[16-08-2022 20:39:42] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 20:39:43] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 20:39:43] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Doril | laboratory = HYPERA PHARMA | quantity = 4 | price = R$ 9,13 }
+[16-08-2022 20:39:43] [ DEBUG] [MedicineDaoImpl:54] Finding an specific medicine
+[16-08-2022 20:51:13] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 20:51:14] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 20:51:14] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Doril | laboratory = HYPERA PHARMA | quantity = 4 | price = R$ 9,13 }
+[16-08-2022 20:51:26] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 20:51:27] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 20:51:27] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Doril | laboratory = HYPERA PHARMA | quantity = 4 | price = R$ 9,13 }
+[16-08-2022 20:51:27] [ DEBUG] [MedicineDaoImpl:54] Finding an specific medicine
+[16-08-2022 20:54:08] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Ibuprofeno | laboratory = Aché | quantity = 395 | price = R$ 23,00 }
+[16-08-2022 20:54:10] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 20:54:10] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 20:54:10] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Doril | laboratory = HYPERA PHARMA | quantity = 4 | price = R$ 9,13 }
+[16-08-2022 20:54:10] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 20:54:10] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 20:54:10] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Doril | laboratory = HYPERA PHARMA | quantity = 4 | price = R$ 9,13 }
+[16-08-2022 20:54:10] [ DEBUG] [MedicineDaoImpl:54] Finding an specific medicine
+[16-08-2022 20:55:58] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Ibuprofeno | laboratory = Aché | quantity = 395 | price = R$ 23,00 }
+[16-08-2022 20:56:55] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 20:56:55] [ DEBUG] [MedicineDaoImpl:54] Finding an specific medicine
+[16-08-2022 20:58:48] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 20:58:49] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 20:58:49] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 20:58:49] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Doril | laboratory = HYPERA PHARMA | quantity = 4 | price = R$ 9,13 }
+[16-08-2022 20:58:49] [ DEBUG] [MedicineDaoImpl:54] Finding an specific medicine
+[16-08-2022 20:59:39] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 20:59:40] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 20:59:40] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Doril | laboratory = HYPERA PHARMA | quantity = 4 | price = R$ 9,13 }
+[16-08-2022 20:59:40] [ DEBUG] [MedicineDaoImpl:54] Finding an specific medicine
+[16-08-2022 21:00:49] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 21:00:51] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 21:00:51] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Doril | laboratory = HYPERA PHARMA | quantity = 4 | price = R$ 9,13 }
+[16-08-2022 21:01:59] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 21:02:01] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 21:02:01] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Doril | laboratory = HYPERA PHARMA | quantity = 4 | price = R$ 9,13 }
+[16-08-2022 21:02:55] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Tylenol | laboratory = JANSSEN-CILAG | quantity = 10 | price = R$ 23,87 }
+[16-08-2022 21:02:55] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Resfenol | laboratory = KLEY-HERTZ | quantity = 20 | price = R$ 18,57 }
+[16-08-2022 21:02:55] [ DEBUG] [MedicineDaoImpl:28] Saving a new medicine: Medicine { name = Doril | laboratory = HYPERA PHARMA | quantity = 4 | price = R$ 9,13 }
+[16-08-2022 21:05:55] [ DEBUG] [MedicineDaoImpl:26] Saving a new medicine: Medicine { name = Ibuprofeno | laboratory = Aché | quantity = 395 | price = R$ 23,00 }
