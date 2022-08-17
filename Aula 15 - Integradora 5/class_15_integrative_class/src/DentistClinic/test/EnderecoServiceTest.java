@@ -35,6 +35,7 @@ class EnderecoServiceTest {
 
     @Test
     public void buscarTodosTest() {
+        LOGGER.info("Buscando endereços no H2...");
         Endereco endereco = enderecoService.salvar(new Endereco("Av. Eldorado", 2154,
                 "São Paulo", "Morumbi"));
 
