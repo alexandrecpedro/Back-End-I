@@ -6,5 +6,5 @@ CREATE TABLE IF NOT EXISTS filiais (
     numero VARCHAR(8),
     cidade VARCHAR(32),
     estado VARCHAR(32),
-    e5Estrelas BOOLEAN
+    e5Estrelas BIT
 );
