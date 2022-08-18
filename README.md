@@ -105,5 +105,5 @@
 
 
 #### Avaliações
-- [x] Avaliação I  | Diagrama de Classes Chain of Responsibility pattern
+- [x] Avaliação I  | Testes Unitários, Logging e Acesso a Dados (Padrão DAO e H2 Database)
 - [x] Avaliação II | Trabalho Integrador - Sistema de reserva de consultas (E-commerce)

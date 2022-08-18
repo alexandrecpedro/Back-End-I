@@ -1,7 +1,7 @@
 .doc
 .docx
-*/assincrona
-.txt
-.DS_Store
+*.txt
 *.pdf
 *.zip
+*.DS_Store
+*/assincrona
