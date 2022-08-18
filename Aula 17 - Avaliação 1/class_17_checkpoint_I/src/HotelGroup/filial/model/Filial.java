@@ -9,9 +9,6 @@ public class Filial {
     private Boolean e5Estrelas;
 
     /** Constructor **/
-    public Filial() {
-    }
-
     public Filial(String nomeFilial, String logradouro, String numero, String cidade, String estado, Boolean e5Estrelas) {
         this.nomeFilial = nomeFilial;
         this.logradouro = logradouro;
