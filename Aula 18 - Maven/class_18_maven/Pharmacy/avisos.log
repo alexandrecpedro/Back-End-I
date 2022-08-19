@@ -1,0 +1,1 @@
+[18-08-2022 20:29:32] [ DEBUG] [MedicineDaoImpl:26] Saving a new medicine: Medicine { name = Ibuprofeno | laboratory = Aché | quantity = 395 | price = R$ 23,00 }
