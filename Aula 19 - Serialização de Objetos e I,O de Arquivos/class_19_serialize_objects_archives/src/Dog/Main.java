@@ -58,7 +58,7 @@ public class Main {
 
             // Search for external file
             FileInputStream fileInputStream = new FileInputStream("dogs.dates");
-            // Desserialize file
+            // Deserialize file
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
             // Store the content of the read file/object
