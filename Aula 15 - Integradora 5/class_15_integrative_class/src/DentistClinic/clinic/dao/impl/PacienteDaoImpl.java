@@ -2,7 +2,7 @@ package DentistClinic.clinic.dao.impl;
 
 import DentistClinic.clinic.dao.ConfiguracaoJDBC;
 import DentistClinic.clinic.dao.IDao;
-import DentistClinic.clinic.model.Endereco;
+import DentistClinic.clinic.model.Paciente;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,67 +11,70 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnderecoDaoImpl implements IDao<Endereco> {
+public class PacienteDaoImpl implements IDao<Paciente> {
     /** Attribute **/
     private ConfiguracaoJDBC configuracaoJDBC;
 
     /** Constructor **/
-    public EnderecoDaoImpl(ConfiguracaoJDBC configuracaoJDBC) {
+    public PacienteDaoImpl(ConfiguracaoJDBC configuracaoJDBC) {
         this.configuracaoJDBC = configuracaoJDBC;
     }
 
     /** Methods **/
     @Override
-    public Endereco salvar(Endereco endereco) {
+    public Paciente salvar(Paciente paciente) {
         Connection connection = configuracaoJDBC.connectWithDatabase();
         Statement statement = null;
         String query = String.format(
-                "INSERT INTO enderecos (rua, numero, cidade, bairro) VALUES ('%s', '%d', '%s', '%s')",
-                endereco.getRua(), endereco.getNumero(), endereco.getCidade(), endereco.getBairro());
+                "INSERT INTO pacientes (nome, sobrenome, rg, dataCadastro, idEndereco) " +
+                        "VALUES ('%s', '%s', '%s', '%s', '%s')",
+                paciente.getNome(), paciente.getSobrenome(), paciente.getRg(),
+                paciente.getDataCadastro(), paciente.getIdEndereco());
 
         try {
             statement = connection.createStatement();
             statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
-                endereco.setId(resultSet.getInt(1));
+                paciente.setId(resultSet.getInt(1));
             }
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return endereco;
+        return paciente;
     }
 
     @Override
-    public List<Endereco> buscarTodos() {
+    public List<Paciente> buscarTodos() {
         Connection connection = configuracaoJDBC.connectWithDatabase();
         Statement statement = null;
-        String query = String.format("SELECT * FROM enderecos");
-        List<Endereco> enderecos = new ArrayList<>();
+        String query = String.format("SELECT * FROM pacientes");
+        List<Paciente> pacientes = new ArrayList<>();
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                enderecos.add(new Endereco(resultSet.getInt("id"),
-                        resultSet.getString("rua"),
-                        resultSet.getInt("numero"),
-                        resultSet.getString("cidade"),
-                        resultSet.getString("bairro")));
+                pacientes.add(new Paciente(resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getDate(5),
+                        resultSet.getInt(6)));
             }
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return enderecos;
+        return pacientes;
     }
 
     @Override
     public void excluir(Integer id) {
         Connection connection = configuracaoJDBC.connectWithDatabase();
         Statement statement = null;
-        String query = String.format("DELETE FROM enderecos WHERE id = %d", id);
+        String query = String.format("DELETE FROM pacientes WHERE id = %d", id);
 
         try {
             statement = connection.createStatement();
@@ -83,10 +86,12 @@ public class EnderecoDaoImpl implements IDao<Endereco> {
     }
 
     @Override
-    public Endereco modificar(Endereco endereco) {
+    public Paciente modificar(Paciente paciente) {
         Connection connection = configuracaoJDBC.connectWithDatabase();
         Statement statement = null;
-        String query = String.format("UPDATE enderecos SET rua = %s WHERE id = %d", endereco.getRua(), endereco.getId());
+        String query = String.format("UPDATE pacientes SET nome='%s', sobrenome='%s', rg='%s'," +
+                "idEndereco='%s' WHERE id='%s'", paciente.getNome(), paciente.getSobrenome(),
+                paciente.getRg(),paciente.getIdEndereco(),paciente.getId());
 
         try {
             statement = connection.createStatement();
@@ -95,6 +100,6 @@ public class EnderecoDaoImpl implements IDao<Endereco> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return endereco;
+        return paciente;
     }
 }

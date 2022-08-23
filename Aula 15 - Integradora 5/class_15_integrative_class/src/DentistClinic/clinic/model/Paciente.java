@@ -1,33 +1,34 @@
 package DentistClinic.clinic.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Paciente {
     /** Attributes **/
     private Integer id;
     private String nome, sobrenome, rg;
-    private LocalDate dataCadastro;
-    private Endereco endereco;
+    private Date dataCadastro;
+    private Integer idEndereco;
 
     /** Constructor **/
     public Paciente() {
     }
 
-    public Paciente(String nome, String sobrenome, String rg, LocalDate dataCadastro, Endereco endereco) {
+    public Paciente(String nome, String sobrenome, String rg, Date dataCadastro, Integer idEndereco) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.rg = rg;
         this.dataCadastro = dataCadastro;
-        this.endereco = endereco;
+        this.idEndereco = idEndereco;
     }
 
-    public Paciente(Integer id, String nome, String sobrenome, String rg, LocalDate dataCadastro, Endereco endereco) {
+    public Paciente(Integer id, String nome, String sobrenome, String rg, Date dataCadastro, Integer idEndereco) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.rg = rg;
         this.dataCadastro = dataCadastro;
-        this.endereco = endereco;
+        this.idEndereco = idEndereco;
     }
 
     /** Getters/Setters **/
@@ -63,20 +64,20 @@ public class Paciente {
         this.rg = rg;
     }
 
-    public LocalDate getDataCadastro() {
+    public Date getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(LocalDate dataCadastro) {
+    public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 
-    public Endereco getAddress() {
-        return endereco;
+    public Integer getIdEndereco() {
+        return idEndereco;
     }
 
-    public void setAddress(Endereco endereco) {
-        this.endereco = endereco;
+    public void setIdEndereco(Integer idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     /** Methods **/
@@ -88,7 +89,7 @@ public class Paciente {
                 ", sobrenome='" + sobrenome + '\'' +
                 ", rg=" + rg +
                 ", dataCadastro=" + dataCadastro +
-                ", address=" + endereco +
+                ", idEndereco=" + idEndereco +
                 '}';
     }
 }

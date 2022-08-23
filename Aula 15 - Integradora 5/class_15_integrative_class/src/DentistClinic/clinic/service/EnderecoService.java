@@ -23,11 +23,11 @@ public class EnderecoService {
         return enderecoIDao.buscarTodos();
     }
 
-    public Endereco excluir(Endereco endereco) {
-        return enderecoIDao.excluir(endereco);
+    public void excluir(Integer id) {
+        enderecoIDao.excluir(id);
     }
 
-    public Endereco modificar(Endereco endereco, String rua) {
-        return enderecoIDao.modificar(endereco, rua);
+    public Endereco modificar(Endereco endereco) {
+        return enderecoIDao.modificar(endereco);
     }
 }
