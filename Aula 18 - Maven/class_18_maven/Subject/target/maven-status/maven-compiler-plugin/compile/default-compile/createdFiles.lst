@@ -1,5 +1,0 @@
-com/dh/subjects/model/Subject.class
-com/dh/subjects/dao/IDao.class
-com/dh/subjects/dao/impl/SubjectDaoH2.class
-com/dh/subjects/dao/SettingJDBC.class
-com/dh/subjects/service/SubjectService.class
