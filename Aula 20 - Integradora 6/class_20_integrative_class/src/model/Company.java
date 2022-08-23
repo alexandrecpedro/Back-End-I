@@ -47,6 +47,6 @@ public class Company implements Serializable {
         return "Company" +
                 "\nCNPJ = " + cnpj +
                 "\nCorporate Name = " + corporateName +
-                "\nEmployees = " + employees.toString();
+                "\nEmployees = " + employees;
     }
 }
