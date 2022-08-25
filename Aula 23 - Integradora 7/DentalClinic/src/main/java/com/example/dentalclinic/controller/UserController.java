@@ -22,26 +22,14 @@ public class UserController {
         return ResponseEntity.ok(userService.save(user));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok(userService.find(id).orElse(null));
-    }
-
-    @GetMapping
+    @GetMapping("/search")
     public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok(userService.findAll());
     }
 
-    @PutMapping
-    public ResponseEntity<User> update(@RequestBody User user) {
-        return ((!user.getId().equals(null)) && userService.find(user.getId()).isPresent()) ?
-                ResponseEntity.ok(userService.save(user)) :
-                ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Integer id) {
-        if (userService.find(id).isPresent()) {
+        if (!userService.findAll().stream().filter(user -> user.getId() == id).equals(null)) {
             userService.delete(id);
             return ResponseEntity.ok("Successfully deleted");
         }

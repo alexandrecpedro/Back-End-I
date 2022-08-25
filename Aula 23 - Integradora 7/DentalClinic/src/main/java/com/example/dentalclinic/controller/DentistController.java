@@ -24,26 +24,15 @@ public class DentistController {
         return ResponseEntity.ok(dentistService.save(dentist));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Dentist> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok(dentistService.find(id).orElse(null));
-    }
-
-    @GetMapping
+    @GetMapping("/search")
     public ResponseEntity<List<Dentist>> findAll() {
         return ResponseEntity.ok(dentistService.findAll());
     }
 
-    @PutMapping
-    public ResponseEntity<Dentist> update(@RequestBody Dentist dentist) {
-        return ((!dentist.getId().equals(null)) && dentistService.find(dentist.getId()).isPresent()) ?
-                ResponseEntity.ok(dentistService.save(dentist)) :
-                ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Integer id) {
-        if (dentistService.find(id).isPresent()) {
+        if (!dentistService.findAll().stream().filter(user -> user.getId() == id).equals(null)) {
             dentistService.delete(id);
             return ResponseEntity.ok("Successfully deleted");
         }
