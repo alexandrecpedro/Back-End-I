@@ -3,18 +3,17 @@ package com.example.dentalclinic.model;
 public class User {
     /** Attributes **/
     private Integer id;
-    private String name, email, password;
-    private Integer accessLevel;
+    private String name, email, password, accessLevel;
 
     /** Constructor **/
-    public User(String name, String email, String password, Integer accessLevel) {
+    public User(String name, String email, String password, String accessLevel) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.accessLevel = accessLevel;
     }
 
-    public User(Integer id, String name, String email, String password, Integer accessLevel) {
+    public User(Integer id, String name, String email, String password, String accessLevel) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -55,11 +54,11 @@ public class User {
         this.password = password;
     }
 
-    public Integer getAccessLevel() {
+    public String getAccessLevel() {
         return accessLevel;
     }
 
-    public void setAccessLevel(Integer accessLevel) {
+    public void setAccessLevel(String accessLevel) {
         this.accessLevel = accessLevel;
     }
 
