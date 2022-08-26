@@ -1,0 +1,7 @@
+--DROP TABLE IF EXISTS medicines;
+CREATE TABLE IF NOT EXISTS medicines (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(64),
+laboratory VARCHAR(64),
+quantity INT,
+price DOUBLE);
