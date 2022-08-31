@@ -1,6 +1,7 @@
 package com.example.ecommerce.entity;
 
 import com.example.ecommerce.entity.dto.ProductDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ProductEntity {
     /** Attributes **/
@@ -9,15 +10,16 @@ public class ProductEntity {
     private double price;
     private String description;
     private String image;
-    private int categoryId;
+    @JsonIgnore
+    private int category;
 
     /** Constructor **/
-    public ProductEntity(ProductDTO productDTO) {
-        this.title = productDTO.getTitle();
-        this.price = productDTO.getPrice();
-        this.description = productDTO.getDescription();
-        this.image = productDTO.getImage();
-    }
+//    public ProductEntity(ProductDTO productDTO) {
+//        this.title = productDTO.getTitle();
+//        this.price = productDTO.getPrice();
+//        this.description = productDTO.getDescription();
+//        this.image = productDTO.getImage();
+//    }
 
     /** Getters/Setters **/
     public int getId() {
@@ -60,11 +62,11 @@ public class ProductEntity {
         this.image = image;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public int getCategory() {
+        return category;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(int category) {
+        this.category = category;
     }
 }

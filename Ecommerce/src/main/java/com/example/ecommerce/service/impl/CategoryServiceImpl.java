@@ -7,6 +7,7 @@ import com.example.ecommerce.service.ICommerceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,7 +35,16 @@ public class CategoryServiceImpl implements ICommerceService<CategoryDTO> {
 
     @Override
     public List<CategoryDTO> getAll() {
-        return null;
+        // Recover all productEntities
+        List<CategoryEntity> categoryEntities = categoryRepository.getAll();
+        // Create a new list
+        List<CategoryDTO> categoryDTOs = new ArrayList<>();
+
+        // Converting productEntities to productDTOs
+        for (CategoryEntity category : categoryEntities) {
+        }
+
+        return categoryDTOs;
     }
 
     @Override

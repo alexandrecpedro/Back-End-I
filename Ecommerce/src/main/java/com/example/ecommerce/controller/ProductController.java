@@ -3,6 +3,7 @@ package com.example.ecommerce.controller;
 import com.example.ecommerce.entity.dto.ProductDTO;
 import com.example.ecommerce.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,13 +17,28 @@ public class ProductController {
     
     /** Methods **/
     @PostMapping
-    public ProductDTO create(@RequestBody ProductDTO productDTO) {
-        return productService.create(productDTO);
+    public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO productDTO) {
+        ResponseEntity responseEntity = null;
+        if (!productDTO.getTitle().equals(null)) {
+            ProductDTO productDTO1 = productService.create(productDTO);
+            responseEntity = ResponseEntity.ok(productDTO1);
+        } else {
+            responseEntity = ResponseEntity.badRequest().body("Title not found");
+        }
+        return responseEntity;
     }
     
     @GetMapping("/{id}")
-    public ProductDTO getById(@PathVariable int id) {
-        return productService.getById(id);
+    public ResponseEntity<ProductDTO> getById(@PathVariable int id) {
+        ResponseEntity responseEntity = null;
+        ProductDTO productDTO = productService.getById(id);
+
+        if (!productDTO.equals(null)) {
+            responseEntity = ResponseEntity.ok(productDTO);
+        } else {
+            responseEntity = ResponseEntity.notFound().build();
+        }
+        return responseEntity;
     }
 
     @GetMapping

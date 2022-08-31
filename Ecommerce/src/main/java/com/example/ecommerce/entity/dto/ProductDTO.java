@@ -1,7 +1,9 @@
 package com.example.ecommerce.entity.dto;
 
 import com.example.ecommerce.entity.ProductEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductDTO {
     /** Attributes **/
     private String title;
@@ -14,12 +16,12 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-    public ProductDTO(ProductEntity productEntity) {
-        this.title = productEntity.getTitle();
-        this.price = productEntity.getPrice();
-        this.description = productEntity.getDescription();
-        this.image = productEntity.getImage();
-    }
+//    public ProductDTO(ProductEntity productEntity) {
+//        this.title = productEntity.getTitle();
+//        this.price = productEntity.getPrice();
+//        this.description = productEntity.getDescription();
+//        this.image = productEntity.getImage();
+//    }
 
     /** Getters/Setters **/
     public String getTitle() {

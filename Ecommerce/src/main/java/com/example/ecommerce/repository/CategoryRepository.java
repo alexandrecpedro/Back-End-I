@@ -3,7 +3,9 @@ package com.example.ecommerce.repository;
 import com.example.ecommerce.entity.CategoryEntity;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -31,5 +33,19 @@ public class CategoryRepository {
         }
 
         return 0;
+    }
+
+    public List<CategoryEntity> getAll() {
+        return new ArrayList<>(categoryMap.values());
+    }
+
+    public String delete(int id) {
+        categoryMap.remove(id);
+        return "Deleted category";
+    }
+
+    public CategoryEntity update(CategoryEntity categoryEntity) {
+        categoryMap.put(categoryEntity.getId(), categoryEntity);
+        return categoryEntity;
     }
 }
