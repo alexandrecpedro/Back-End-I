@@ -7,6 +7,8 @@ import com.example.ecommerce.service.ICommerceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoryServiceImpl implements ICommerceService<CategoryDTO> {
     /** Attributes **/
@@ -28,5 +30,20 @@ public class CategoryServiceImpl implements ICommerceService<CategoryDTO> {
 
     public int getByName(String name) {
         return categoryRepository.getByName(name);
+    }
+
+    @Override
+    public List<CategoryDTO> getAll() {
+        return null;
+    }
+
+    @Override
+    public String delete(int id) {
+        return null;
+    }
+
+    @Override
+    public CategoryDTO update(CategoryDTO categoryDTO, int id) {
+        return null;
     }
 }
