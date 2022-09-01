@@ -2,6 +2,7 @@ package com.example.ecommerce.controller;
 
 import com.example.ecommerce.entity.dto.ProductDTO;
 import com.example.ecommerce.service.impl.ProductServiceImpl;
+import com.example.ecommerce.validations.ValidationProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +15,15 @@ public class ProductController {
     /** Attributes **/
     @Autowired
     private ProductServiceImpl productService;
+
+    private ValidationProduct validationProduct = new ValidationProduct();
     
     /** Methods **/
     @PostMapping
     public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO productDTO) {
         ResponseEntity responseEntity = null;
-        if (!productDTO.getTitle().equals(null)) {
+        String error = validationProduct.validationProductVariables(productDTO);
+        if (error.equals(null)) {
             ProductDTO productDTO1 = productService.create(productDTO);
             responseEntity = ResponseEntity.ok(productDTO1);
         } else {
