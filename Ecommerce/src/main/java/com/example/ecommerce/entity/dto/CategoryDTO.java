@@ -3,7 +3,8 @@ package com.example.ecommerce.entity.dto;
 import com.example.ecommerce.entity.CategoryEntity;
 
 public class CategoryDTO {
-    /** Attribute **/
+    /** Attributes **/
+    private int id;
     private String name;
 
     /** Constructor **/
@@ -11,10 +12,15 @@ public class CategoryDTO {
     }
 
     public CategoryDTO(CategoryEntity categoryEntity) {
+        this.id = categoryEntity.getId();
         this.name = categoryEntity.getName();
     }
 
     /** Getters/Setters **/
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
