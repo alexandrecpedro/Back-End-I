@@ -2,18 +2,32 @@ package com.example.ecommerce.entity;
 
 import com.example.ecommerce.entity.dto.ProductDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Products")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ProductEntity {
     /** Attributes **/
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(nullable = false)
     private String title;
     private double price;
     private String description;
     private String image;
-    @JsonIgnore
-    private int category;
+
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private CategoryEntity category;
 
     /** Constructor **/
+    public ProductEntity() {
+    }
+
 //    public ProductEntity(ProductDTO productDTO) {
 //        this.title = productDTO.getTitle();
 //        this.price = productDTO.getPrice();
@@ -24,10 +38,6 @@ public class ProductEntity {
     /** Getters/Setters **/
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -62,11 +72,11 @@ public class ProductEntity {
         this.image = image;
     }
 
-    public int getCategory() {
+    public CategoryEntity getCategory() {
         return category;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(CategoryEntity category) {
         this.category = category;
     }
 }

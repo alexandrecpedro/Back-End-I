@@ -3,14 +3,14 @@ package com.example.ecommerce.entity.dto;
 import com.example.ecommerce.entity.ProductEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductDTO {
     /** Attributes **/
+    private int id;
     private String title;
     private double price;
     private String description;
     private String image;
-    private String category;
+    private CategoryDTO category;
 
     /** Constructor **/
     public ProductDTO() {
@@ -24,6 +24,10 @@ public class ProductDTO {
 //    }
 
     /** Getters/Setters **/
+    public int getId() {
+        return id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -56,11 +60,11 @@ public class ProductDTO {
         this.image = image;
     }
 
-    public String getCategory() {
+    public CategoryDTO getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(CategoryDTO category) {
         this.category = category;
     }
 }

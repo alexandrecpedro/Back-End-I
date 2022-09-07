@@ -1,9 +1,10 @@
 package com.example.ecommerce.service.impl;
 
+import com.example.ecommerce.entity.CategoryEntity;
 import com.example.ecommerce.entity.ProductEntity;
 import com.example.ecommerce.entity.dto.CategoryDTO;
 import com.example.ecommerce.entity.dto.ProductDTO;
-import com.example.ecommerce.repository.ProductRepository;
+import com.example.ecommerce.repository.IProductRepository;
 import com.example.ecommerce.service.ICommerceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 public class ProductServiceImpl implements ICommerceService<ProductDTO> {
     /** Attributes **/
     @Autowired
-    private ProductRepository productRepository;
+    private IProductRepository productRepository;
 
     @Autowired
     private CategoryServiceImpl categoryService;
@@ -25,19 +26,26 @@ public class ProductServiceImpl implements ICommerceService<ProductDTO> {
     @Override
     public ProductDTO create(ProductDTO productDTO) {
         ProductEntity productEntity = mapperDTOToEntity(productDTO);
-        productEntity.setCategory(categoryService.getByName(productDTO.getCategory()));
-        if (productEntity.getCategory() != 0)
-            productRepository.create(productEntity);
+        CategoryDTO categoryDTO;
+        int idCategory = productEntity.getCategory().getId();
 
+
+        if (categoryService.ifCategoryExists(idCategory)) {
+            categoryDTO = categoryService.getById(idCategory);
+            CategoryEntity category = new CategoryEntity(categoryDTO);
+            productEntity.setCategory(category);
+            productEntity = productRepository.save(productEntity);
+        }
+
+        productDTO = mapperEntityToDTO(productEntity);
         return productDTO;
     }
 
     @Override
     public ProductDTO getById(int id) {
-        ProductEntity productEntity = productRepository.getById(id);
+        ProductEntity productEntity = productRepository.findById(id).get();
         // Converting ProductEntity to ProductDTO
         ProductDTO productDTO = mapperEntityToDTO(productEntity);
-        productDTO.setCategory(getNameCategory(productEntity));
 
         return productDTO;
     }
@@ -45,44 +53,46 @@ public class ProductServiceImpl implements ICommerceService<ProductDTO> {
     @Override
     public List<ProductDTO> getAll() {
         // Recover all productEntities
-        List<ProductEntity> productEntities = productRepository.getAll();
+//        List<ProductEntity> productEntities = productRepository.getAll();
         // Create a new list
-        List<ProductDTO> productDTOs = new ArrayList<>();
-
-        // Converting productEntities to productDTOs
-        for (ProductEntity product : productEntities) {
-            ProductDTO productDTO = mapperEntityToDTO(product);
-            productDTO.setCategory(getNameCategory(product));
-            productDTOs.add(productDTO);
-        }
-
-        return productDTOs;
+//        List<ProductDTO> productDTOs = new ArrayList<>();
+//
+//        // Converting productEntities to productDTOs
+//        for (ProductEntity product : productEntities) {
+//            ProductDTO productDTO = mapperEntityToDTO(product);
+//            productDTO.setCategory(getNameCategory(product));
+//            productDTOs.add(productDTO);
+//        }
+//
+//        return productDTOs;
+        return null;
     }
 
     @Override
     public String delete(int id) {
-        return productRepository.delete(id);
+        productRepository.deleteById(id);
+        return null;
     }
 
     @Override
     public ProductDTO update(ProductDTO productDTO, int id) {
-        ProductEntity productEntity = mapperDTOToEntity(productDTO);
-        productEntity.setCategory(categoryService.getByName(productDTO.getCategory()));
-        productEntity.setId(id);
-
-        if (productEntity.getCategory() != 0)
-            productRepository.create(productEntity);
+//        ProductEntity productEntity = mapperDTOToEntity(productDTO);
+//        productEntity.setCategory(categoryService.getByName(productDTO.getCategory()));
+//        productEntity.setId(id);
+//
+//        if (productEntity.getCategory() != 0)
+//            productRepository.saveAndFlush(productEntity);
 
         return productDTO;
     }
 
-    public CategoryDTO getCategoryDTO(ProductEntity productEntity) {
-        return categoryService.getById(productEntity.getCategory());
-    }
-
-    public String getNameCategory(ProductEntity productEntity) {
-        return getCategoryDTO(productEntity).getName();
-    }
+//    public CategoryDTO getCategoryDTO(ProductEntity productEntity) {
+//        return categoryService.getById(productEntity.getCategory());
+//    }
+//
+//    public String getNameCategory(ProductEntity productEntity) {
+//        return getCategoryDTO(productEntity).getName();
+//    }
 
     public ProductEntity mapperDTOToEntity(ProductDTO productDTO) {
         ObjectMapper objectMapper = new ObjectMapper();
