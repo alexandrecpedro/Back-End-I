@@ -63,7 +63,14 @@ public class CategoryServiceImpl implements ICommerceService<CategoryDTO> {
         return categoryRepository.existsById(id);
     }
 
-    //    public int getByName(String name) {
-//        return categoryRepository.getByName(name);
-//    }
+    public CategoryDTO getByName(String name) {
+        // Form 1 - Hibernate
+        //CategoryEntity category = categoryRepository.findByName(name);
+        // Form 2 - HQL
+        //CategoryEntity category = categoryRepository.getByName(name);
+        // Form 3 - SQL Native
+        CategoryEntity category = categoryRepository.getByNameSQL(name);
+        CategoryDTO categoryDTO = new CategoryDTO(category);
+        return categoryDTO;
+    }
 }

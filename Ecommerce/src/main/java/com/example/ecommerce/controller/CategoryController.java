@@ -22,4 +22,9 @@ public class CategoryController {
     public CategoryDTO getById(@PathVariable int id) {
         return categoryService.getById(id);
     }
+
+    @GetMapping("/getByName")
+    public CategoryDTO getByName(@RequestParam(value = "name") String name) {
+        return categoryService.getByName(name);
+    }
 }
