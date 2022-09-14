@@ -29,7 +29,6 @@ public class ProductServiceImpl implements ICommerceService<ProductDTO> {
         CategoryDTO categoryDTO;
         int idCategory = productEntity.getCategory().getId();
 
-
         if (categoryService.ifCategoryExists(idCategory)) {
             categoryDTO = categoryService.getById(idCategory);
             CategoryEntity category = new CategoryEntity(categoryDTO);
