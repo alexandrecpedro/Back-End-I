@@ -7,5 +7,5 @@ public interface ICommerceService<T> {
     T getById(int id);
     List<T> getAll();
     String delete(int id);
-    T update(T t, int id);
+    T update(T t);
 }

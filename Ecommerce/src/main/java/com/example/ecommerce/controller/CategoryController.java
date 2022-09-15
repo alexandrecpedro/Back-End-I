@@ -27,4 +27,13 @@ public class CategoryController {
     public CategoryDTO getByName(@RequestParam(value = "name") String name) {
         return categoryService.getByName(name);
     }
+    @PutMapping
+    public CategoryDTO update(@RequestBody CategoryDTO categoryDTO) {
+        return categoryService.update(categoryDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@RequestParam(value = "id") int id) {
+        return categoryService.delete(id);
+    }
 }

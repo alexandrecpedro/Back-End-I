@@ -74,7 +74,7 @@ public class ProductServiceImpl implements ICommerceService<ProductDTO> {
     }
 
     @Override
-    public ProductDTO update(ProductDTO productDTO, int id) {
+    public ProductDTO update(ProductDTO productDTO) {
 //        ProductEntity productEntity = mapperDTOToEntity(productDTO);
 //        productEntity.setCategory(categoryService.getByName(productDTO.getCategory()));
 //        productEntity.setId(id);

@@ -40,7 +40,6 @@ public class CategoryServiceImpl implements ICommerceService<CategoryDTO> {
         CategoryEntity category = categoryRepository.findById(id).get();
         List<ProductEntity> productEntities = category.getProductEntities();
 
-
         return null;
     }
 
@@ -51,12 +50,15 @@ public class CategoryServiceImpl implements ICommerceService<CategoryDTO> {
 
     @Override
     public String delete(int id) {
-        return null;
+        categoryRepository.deleteById(id);
+        return "Successfully deleted";
     }
 
     @Override
-    public CategoryDTO update(CategoryDTO categoryDTO, int id) {
-        return null;
+    public CategoryDTO update(CategoryDTO categoryDTO) {
+        CategoryEntity categoryEntity = new CategoryEntity(categoryDTO);
+        categoryRepository.saveAndFlush(categoryEntity);
+        return categoryDTO;
     }
 
     public boolean ifCategoryExists(int id) {
