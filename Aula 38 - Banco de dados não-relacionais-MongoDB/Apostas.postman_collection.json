@@ -1,0 +1,125 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Apostas",
+		"_postman_id": "7123d21c-a514-3faa-0991-e3a41b97c80e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Times",
+			"description": "",
+			"item": [
+				{
+					"name": "Salvar time",
+					"request": {
+						"url": "http://localhost:8080/times",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Cruzeiro\",\n\t\"pais\": \"Brasil\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar todos times",
+					"request": {
+						"url": "http://localhost:8080/times",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar time por nome",
+					"request": {
+						"url": "http://localhost:8080/times/Cruzeiro",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Partidas",
+			"description": "",
+			"item": [
+				{
+					"name": "Salvar partida",
+					"request": {
+						"url": "http://localhost:8080/partidas",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"resultado\": \"2x1\",\n\t\"status\": \"agendada\",\n\t\"timeLocal\": {\n\t\t\"nome\": \"Cruzeiro\"\n\t},\n\t\"timeVisitante\": {\n\t\t\"nome\": \"Boca Juniors\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Salvar partidaForm",
+					"request": {
+						"url": "http://localhost:8080/partidas/salvarForm",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"resultado\": \"1x2\",\n\t\"status\": \"ENCERRADA\",\n\t\"timeLocal\": \"Boca Juniors\",\n\t\"timeVisitante\": \"Cruzeiro\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar todas partidas",
+					"request": {
+						"url": "http://localhost:8080/partidas",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
