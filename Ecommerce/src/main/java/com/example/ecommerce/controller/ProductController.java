@@ -1,9 +1,12 @@
 package com.example.ecommerce.controller;
 
 import com.example.ecommerce.entity.dto.ProductDTO;
+import com.example.ecommerce.exception.NotFoundException;
+import com.example.ecommerce.exception.NullVariableException;
 import com.example.ecommerce.service.impl.ProductServiceImpl;
 import com.example.ecommerce.validations.ValidationProduct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,29 +23,19 @@ public class ProductController {
     
     /** Methods **/
     @PostMapping
-    public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO productDTO) throws NullVariableException {
         ResponseEntity responseEntity = null;
-        String error = validationProduct.validationProductVariables(productDTO);
-        if (error.equals(null)) {
+        Boolean error = validationProduct.validationProductVariables(productDTO);
+        if (error) {
             ProductDTO productDTO1 = productService.create(productDTO);
             responseEntity = ResponseEntity.ok(productDTO1);
-        } else {
-            responseEntity = ResponseEntity.badRequest().body("Title not found");
         }
         return responseEntity;
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDTO> getById(@PathVariable int id) {
-        ResponseEntity responseEntity = null;
-        ProductDTO productDTO = productService.getById(id);
-
-        if (!productDTO.equals(null)) {
-            responseEntity = ResponseEntity.ok(productDTO);
-        } else {
-            responseEntity = ResponseEntity.notFound().build();
-        }
-        return responseEntity;
+    public ResponseEntity<ProductDTO> getById(@PathVariable int id) throws NotFoundException {
+        return new ResponseEntity<>(productService.getById(id), HttpStatus.OK);
     }
 
     @GetMapping

@@ -4,6 +4,7 @@ import com.example.ecommerce.entity.CategoryEntity;
 import com.example.ecommerce.entity.ProductEntity;
 import com.example.ecommerce.entity.dto.CategoryDTO;
 import com.example.ecommerce.entity.dto.ProductDTO;
+import com.example.ecommerce.exception.NotFoundException;
 import com.example.ecommerce.repository.IProductRepository;
 import com.example.ecommerce.service.ICommerceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,8 +42,9 @@ public class ProductServiceImpl implements ICommerceService<ProductDTO> {
     }
 
     @Override
-    public ProductDTO getById(int id) {
-        ProductEntity productEntity = productRepository.findById(id).get();
+    public ProductDTO getById(int id) throws NotFoundException {
+        ProductEntity productEntity = productRepository.findById(id).orElseThrow(() ->
+                new NotFoundException("Not found product with id: " + id));
         // Converting ProductEntity to ProductDTO
         ProductDTO productDTO = mapperEntityToDTO(productEntity);
 
