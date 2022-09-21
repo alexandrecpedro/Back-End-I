@@ -5,7 +5,7 @@ import com.example.ecommerce.exception.NotFoundException;
 import java.util.List;
 
 public interface ICommerceService<T> {
-    T create(T t);
+    T create(T t) throws NotFoundException;
     T getById(int id) throws NotFoundException;
     List<T> getAll();
     String delete(int id);

@@ -23,7 +23,7 @@ public class ProductController {
     
     /** Methods **/
     @PostMapping
-    public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO productDTO) throws NullVariableException {
+    public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO productDTO) throws NullVariableException, NotFoundException {
         ResponseEntity responseEntity = null;
         Boolean error = validationProduct.validationProductVariables(productDTO);
         if (error) {

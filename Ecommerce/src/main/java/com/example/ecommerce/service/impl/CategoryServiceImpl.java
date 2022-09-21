@@ -4,6 +4,7 @@ import com.example.ecommerce.entity.CategoryEntity;
 import com.example.ecommerce.entity.ProductEntity;
 import com.example.ecommerce.entity.dto.CategoryDTO;
 import com.example.ecommerce.entity.dto.ProductDTO;
+import com.example.ecommerce.exception.NotFoundException;
 import com.example.ecommerce.repository.ICategoryRepository;
 import com.example.ecommerce.service.ICommerceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,15 @@ public class CategoryServiceImpl implements ICommerceService<CategoryDTO> {
     }
 
     @Override
-    public CategoryDTO getById(int id) {
-        CategoryEntity categoryEntity = categoryRepository.findById(id).get();
+    public CategoryDTO getById(int id) throws NotFoundException {
+        CategoryEntity categoryEntity = categoryRepository.findById(id).orElseThrow(() ->
+                new NotFoundException("Not found category with id: " + id));
         return new CategoryDTO(categoryEntity);
     }
 
-    public List<ProductDTO> getProductsByCategory(int id) {
-        CategoryEntity category = categoryRepository.findById(id).get();
+    public List<ProductDTO> getProductsByCategory(int id) throws NotFoundException {
+        CategoryEntity category = categoryRepository.findById(id).orElseThrow(() ->
+                new NotFoundException("Not found category with id: " + id));
         List<ProductEntity> productEntities = category.getProductEntities();
 
         return null;

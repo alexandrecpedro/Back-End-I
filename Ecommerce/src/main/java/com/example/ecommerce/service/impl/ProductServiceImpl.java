@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ICommerceService<ProductDTO> {
 
     /** Methods **/
     @Override
-    public ProductDTO create(ProductDTO productDTO) {
+    public ProductDTO create(ProductDTO productDTO) throws NotFoundException {
         ProductEntity productEntity = mapperDTOToEntity(productDTO);
         CategoryDTO categoryDTO;
         int idCategory = productEntity.getCategory().getId();
@@ -72,7 +72,7 @@ public class ProductServiceImpl implements ICommerceService<ProductDTO> {
     @Override
     public String delete(int id) {
         productRepository.deleteById(id);
-        return null;
+        return "Successfully deleted!";
     }
 
     @Override

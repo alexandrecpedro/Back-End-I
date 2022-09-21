@@ -1,6 +1,7 @@
 package com.example.ecommerce.controller;
 
 import com.example.ecommerce.entity.dto.CategoryDTO;
+import com.example.ecommerce.exception.NotFoundException;
 import com.example.ecommerce.service.impl.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public CategoryDTO getById(@PathVariable int id) {
+    public CategoryDTO getById(@PathVariable int id) throws NotFoundException {
         return categoryService.getById(id);
     }
 
