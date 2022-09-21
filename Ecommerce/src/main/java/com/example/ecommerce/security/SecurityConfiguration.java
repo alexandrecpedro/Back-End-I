@@ -1,16 +1,20 @@
 package com.example.ecommerce.security;
 
+import com.example.ecommerce.security.filter.JwtRequestFilter;
 import com.example.ecommerce.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -22,19 +26,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
+
     /** Methods **/
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // Disable navigator login screen (only uses the Spring Boot's one)
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user").permitAll()
+                .antMatchers("/user", "/user/authenticate").permitAll()
                 .antMatchers(HttpMethod.GET, "/product").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/product", "/category").hasRole("ADMIN")
+                .antMatchers("/product", "/category").hasAnyRole("ADMIN")
                 .anyRequest()
                 .authenticated().and()
-//                .formLogin();
-                .httpBasic();
+                //.formLogin();
+                // .httpBasic();
+                // It has the same lifecycle of token (no state)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     // Manages the AuthenticationBuilder settings
@@ -54,4 +64,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
+    @Bean
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
+    }
 }

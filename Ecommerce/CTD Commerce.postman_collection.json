@@ -1,0 +1,227 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CTD Commerce",
+		"_postman_id": "38e28034-e701-d98d-2037-cd1fea88d02d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"description": "",
+			"item": [
+				{
+					"name": "Save product",
+					"request": {
+						"url": "http://localhost:8080/product",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Play Station 5\",\n\t\"price\": 4800.00,\n\t\"description\": \"Novo vídeo game da Sony\",\n\t\"image\": \"https://sm.ign.com/ign_br/screenshot/default/ps5-5-motivos-para-comprar-o-console-de-nova-geracao-da-sony_741k.jpg\",\n\t\"category\": {\n\t\t\"id\": 1\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"url": "http://localhost:8080/product",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"title\": \"Play Station 5\",\n\t\"price\": 4800.00,\n\t\"description\": \"Novo vídeo game da Sony\",\n\t\"image\": \"https://sm.ign.com/ign_br/screenshot/default/ps5-5-motivos-para-comprar-o-console-de-nova-geracao-da-sony_741k.jpg\",\n\t\"category\": {\n\t\t\"id\": 2\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Find all products",
+					"request": {
+						"url": "http://localhost:8080/product",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Find product by id",
+					"request": {
+						"url": "http://localhost:8080/product/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product by id",
+					"request": {
+						"url": "http://localhost:8080/product/1",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"description": "",
+			"item": [
+				{
+					"name": "Save category",
+					"request": {
+						"url": "http://localhost:8080/category",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Eletrônico\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update category",
+					"request": {
+						"url": "http://localhost:8080/category",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"name\": \"Perfumaria\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Find all categories",
+					"request": {
+						"url": "http://localhost:8080/category",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Find category by id",
+					"request": {
+						"url": "http://localhost:8080/category/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aGlhZ29iZWxsaW5pIiwiZXhwIjoxNjYzNzExMDEzLCJpYXQiOjE2NjM3MTA5NTJ9.Biun-BFy96VF5rtBw1D1NOhihSmFj0D6LiB6jZbwPLk",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Find category by name",
+					"request": {
+						"url": "http://localhost:8080/category/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"description": "",
+			"item": [
+				{
+					"name": "Save user",
+					"request": {
+						"url": "http://localhost:8080/user",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Thiago Bellini\",\n    \"username\": \"thiagobellini\",\n    \"email\": \"thiagobellini@email.com\",\n    \"password\": \"1234567890\",\n    \"userRoles\": \"ROLE_ADMIN\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate user",
+					"request": {
+						"url": "http://localhost:8080/user/authenticate",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"thiagobellini\",\n    \"password\": \"1234567890\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
