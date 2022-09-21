@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
-    /** **/
+    /** Method **/
     @PostMapping
     public ResponseEntity<String> create(@RequestBody UserDTO userDTO) {
         Boolean create = userService.create(userDTO);
