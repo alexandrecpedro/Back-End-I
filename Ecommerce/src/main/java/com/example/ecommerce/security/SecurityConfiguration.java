@@ -35,9 +35,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // Disable navigator login screen (only uses the Spring Boot's one)
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user", "/user/authenticate").permitAll()
+                .antMatchers("/user", "/user/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/product").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/product", "/category").hasAnyRole("ADMIN")
+                .antMatchers("/category", "/category/**").hasAnyRole("ADMIN")
+                .antMatchers("/product").hasAnyRole("ADMIN")
                 .anyRequest()
                 .authenticated().and()
                 //.formLogin();
