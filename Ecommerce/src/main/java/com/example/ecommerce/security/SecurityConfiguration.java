@@ -2,6 +2,8 @@ package com.example.ecommerce.security;
 
 import com.example.ecommerce.security.filter.JwtRequestFilter;
 import com.example.ecommerce.service.impl.UserServiceImpl;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +20,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@SecurityScheme(
+        name = "Bearer Authentication",
+        type = SecuritySchemeType.HTTP,
+        bearerFormat = "JWT",
+        scheme = "bearer"
+)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     /** Attributes **/
     @Autowired
@@ -36,6 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/user", "/user/**").permitAll()
+                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .antMatchers(HttpMethod.GET, "/product").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/category", "/category/**").hasAnyRole("ADMIN")
                 .antMatchers("/product").hasAnyRole("ADMIN")

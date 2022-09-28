@@ -4,6 +4,7 @@ import com.example.ecommerce.entity.dto.UserDTO;
 import com.example.ecommerce.security.AuthenticationResponse;
 import com.example.ecommerce.security.util.JwtUtil;
 import com.example.ecommerce.service.impl.UserServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,7 @@ public class UserController {
     private JwtUtil jwtUtil;
 
     /** Methods **/
+    @Operation(summary = "Save users")
     @PostMapping
     public ResponseEntity<String> create(@RequestBody UserDTO userDTO) {
         Boolean create = userService.create(userDTO);
@@ -39,6 +41,7 @@ public class UserController {
                 : new ResponseEntity<>("User cannot be created!", HttpStatus.CONFLICT));
     }
 
+    @Operation(summary = "Generate authentication token")
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> createAuthenticationToken(@RequestBody UserDTO userDTO) throws Exception {
         try {
