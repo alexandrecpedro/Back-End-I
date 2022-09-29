@@ -18,7 +18,7 @@
 
 (5) Run Docker
 
-        docker run --publish < port >:< port > <image_name>:<image_version>
+        docker run --publish <port>:<port> <image_name>:<image_version>
         
     Ex: docker run --publish 8080:8080 market_store:1.0
     
