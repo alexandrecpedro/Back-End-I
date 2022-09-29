@@ -16,16 +16,16 @@
     Ex: docker build --tag market_store:1.0 .
 
 
-(5) Settings for test (Creating all info from docker-compose)
-
-        docker-compose up --build
-
-
-(6) Run Docker
+(5) Run Docker
 
         docker run --publish < port >:< port > <image_name>:<image_version>
         
     Ex: docker run --publish 8080:8080 market_store:1.0
+    
+
+(6) Settings for test (Creating all info from docker-compose)
+
+        docker-compose up --build
 
 
 (7) Access for testing
