@@ -23,7 +23,12 @@
     Ex: docker run --publish 8080:8080 market_store:1.0
 
 
-(6) Access for testing
+(6) Access for testing (docker-compose)
+    
+        docker-compose up -d
+
+
+(7) Open the testing
 
         Open the webpage: http://localhost:<port>/swagger-ui/index.html
         
