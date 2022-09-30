@@ -28,7 +28,7 @@
         docker-compose up -d
 
 
-(7) Open the testing
+(7) Open the documentation (Swagger)
 
         Open the webpage: http://localhost:<port>/swagger-ui/index.html
         
